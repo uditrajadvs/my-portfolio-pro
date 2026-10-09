@@ -2,7 +2,7 @@
 .site-footer { color: var(--color-surface); background: var(--color-footer); }
 .footer-inner { width: min(var(--content-max), calc(100% - var(--space-8))); min-height: 190px; display: grid; grid-template-columns: minmax(250px, 1.4fr) minmax(300px, 1.5fr) auto; align-items: start; gap: var(--space-6); margin: 0 auto; padding-block: var(--space-5) var(--space-4); }
 .footer-brand { display: flex; align-items: flex-start; gap: var(--space-3); }
-.footer-logo { display: block; width: 36px; height: 28px; text-decoration: none; }
+.footer-logo { display: block; width: 40px; height: 28px; text-decoration: none; }
 .footer-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .footer-brand p { margin: 0; color: var(--color-surface); font-size: var(--font-size-small); }
 .footer-brand p strong { font-weight: 600; }
