@@ -3,6 +3,7 @@
 .intro-lockup { display: grid; justify-items: center; gap: 24px; text-align: center; }
 .intro-logo { width: clamp(170px, 38vw, 260px); height: auto; overflow: visible; filter: drop-shadow(0 0 0 transparent); animation: logo-glow 550ms ease-out 520ms forwards; }
 .intro-logo path { fill: var(--color-logo-primary); stroke: none; }
+.intro-logo .letter-u { fill: none; stroke: var(--color-logo-primary); stroke-width: 30; stroke-linecap: butt; stroke-linejoin: round; }
 .intro-logo .letter-r-core { opacity: 0; transform: translateX(58px); animation: letter-from-right 520ms cubic-bezier(.2,.8,.2,1) 80ms forwards; }
 .intro-logo .letter-r-leg { opacity: 0; transform: translateX(58px); animation: letter-from-right 520ms cubic-bezier(.2,.8,.2,1) 80ms forwards; }
 .letter-u { opacity: 0; transform: translateX(-58px); animation: letter-from-left 520ms cubic-bezier(.2,.8,.2,1) 80ms forwards; }

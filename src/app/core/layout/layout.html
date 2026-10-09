@@ -1,4 +1,4 @@
 <a class="skip-link" href="#main-content">Skip to content</a>
-<app-header />
-<main id="main-content"><ng-content /></main>
+<app-header [darkMode]="darkMode()" (themeToggle)="themeToggle.emit($event)" />
+<main id="main-content"><router-outlet /></main>
 <app-footer />

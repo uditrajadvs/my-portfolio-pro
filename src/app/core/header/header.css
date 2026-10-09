@@ -10,6 +10,13 @@
 .navigation .nav-resume { padding: var(--space-2) var(--space-3); border: 1px solid var(--color-primary); border-radius: var(--radius-control); color: var(--color-surface); background: var(--color-primary); }
 .navigation .nav-resume:hover { color: var(--color-surface); background: var(--color-primary-hover); }
 .nav-resume span { margin-left: var(--space-1); }
+.theme-switcher { display: inline-flex; align-items: center; gap: var(--space-1); padding: 3px; border: 1px solid var(--color-border); border-radius: 999px; background: var(--color-background); }
+.theme-option { width: 30px; height: 30px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%; color: var(--color-muted); background: transparent; cursor: pointer; transition: color .18s ease, background-color .18s ease; }
+.theme-option:hover { color: var(--color-primary); }
+.theme-option[aria-label='Light mode']:hover { color: var(--color-heading); background: var(--color-theme-light-hover); }
+.theme-option[aria-label='Dark mode']:hover { color: var(--color-theme-dark-hover-icon); background: var(--color-theme-dark-hover); }
+.theme-option[aria-pressed='true'] { color: var(--color-primary); background: var(--color-surface); box-shadow: var(--shadow-card); }
+.theme-option svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .menu-toggle { display: none; }
 @media (max-width: 1020px) {
   .header-inner { width: min(100% - var(--space-5), 760px); }
@@ -20,5 +27,6 @@
   .navigation a { padding: var(--space-3) var(--space-1); font-size: var(--font-size-small); }
   .navigation a.current { border-bottom: 0; }
   .navigation .nav-resume { margin-top: var(--space-2); padding: var(--space-3); text-align: center; }
+  .theme-switcher { align-self: flex-start; margin-top: var(--space-2); }
 }
 @media (max-width: 420px) { .header-inner { width: calc(100% - var(--space-5)); } }

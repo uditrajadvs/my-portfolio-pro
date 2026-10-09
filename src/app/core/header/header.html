@@ -1,6 +1,6 @@
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="#home" aria-label="Udit — home" (click)="closeMenu()">
+    <a class="brand" routerLink="/overview" aria-label="Udit — overview" (click)="closeMenu()">
       <img class="brand-mark" src="/icons/ur-monogram.svg" alt="" aria-hidden="true" />
       <span>{{ profile.name }}</span>
     </a>
@@ -18,9 +18,31 @@
 
     <nav id="primary-navigation" class="navigation" [class.is-open]="menuOpen()" aria-label="Main navigation">
       @for (item of navigation; track item.href) {
-        <a [href]="item.href" [class.current]="item.href === '#home'" [attr.aria-current]="item.href === '#home' ? 'page' : null" (click)="closeMenu()">{{ item.label }}</a>
+        <a [routerLink]="item.href" routerLinkActive="current" [routerLinkActiveOptions]="{ exact: true }" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ item.label }}</a>
       }
       <a class="nav-resume" [href]="profile.resumeHref" download (click)="closeMenu()">Resume <span aria-hidden="true">↗</span></a>
+      <div class="theme-switcher" role="group" aria-label="Color theme">
+        <button
+          class="theme-option"
+          type="button"
+          aria-label="Light mode"
+          title="Light mode"
+          [attr.aria-pressed]="!darkMode()"
+          (click)="themeToggle.emit(false)"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <button
+          class="theme-option"
+          type="button"
+          aria-label="Dark mode"
+          title="Dark mode"
+          [attr.aria-pressed]="darkMode()"
+          (click)="themeToggle.emit(true)"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.9 13A8.5 8.5 0 0 1 11 3.1 8.5 8.5 0 1 0 20.9 13Z"/></svg>
+        </button>
+      </div>
     </nav>
   </div>
 </header>
