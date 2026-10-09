@@ -15,10 +15,12 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the portfolio home section', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, my-portfolio');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Udit Raj');
+    expect(compiled.querySelector('#quick-title')?.textContent).toContain('Quick info');
+    expect(compiled.querySelector('#about-title')?.textContent).toContain('About me');
   });
 });

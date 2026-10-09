@@ -6,8 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:my-portfolio": "node dist/my-portfolio/server/server.mjs"
+    "test": "ng test"
   },
   "private": true,
   "packageManager": "npm@11.19.0",

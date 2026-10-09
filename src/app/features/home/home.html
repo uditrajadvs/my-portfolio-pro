@@ -1,0 +1,29 @@
+<div class="profile-page">
+  <section class="hero section-wrap" id="home" aria-labelledby="hero-title">
+    <div class="identity-mark" aria-hidden="true">UR</div>
+
+    <div class="hero-copy">
+      <p class="eyebrow">{{ profile.title }}</p>
+      <h1 id="hero-title">{{ profile.name }}</h1>
+      <p class="intro">{{ profile.summary }}</p>
+      <p class="current-role">{{ profile.role }} <span>·</span> {{ profile.employer }}</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#contact">Contact <span aria-hidden="true">↗</span></a>
+        <a class="button button-secondary" [href]="profile.resumeHref" download>Download resume <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+
+    <aside class="quick-card" aria-labelledby="quick-title">
+      <h2 id="quick-title">Quick info</h2>
+      <dl class="quick-grid">
+        @for (fact of profile.quickFacts; track fact.label) {
+          <div class="quick-fact">
+            <span class="fact-icon" aria-hidden="true">{{ fact.symbol }}</span>
+            <div><dt>{{ fact.label }}</dt><dd>{{ fact.value }}</dd></div>
+          </div>
+        }
+      </dl>
+    </aside>
+  </section>
+
+</div>

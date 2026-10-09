@@ -1,0 +1,26 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#home" aria-label="Udit — home" (click)="closeMenu()">
+      <img class="brand-mark" src="/icons/ur-monogram.svg" alt="" aria-hidden="true" />
+      <span>{{ profile.name }}</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="primary-navigation"
+      [attr.aria-label]="menuOpen() ? 'Close navigation menu' : 'Open navigation menu'"
+      (click)="toggleMenu()"
+    >
+      <span></span><span></span>
+    </button>
+
+    <nav id="primary-navigation" class="navigation" [class.is-open]="menuOpen()" aria-label="Main navigation">
+      @for (item of navigation; track item.href) {
+        <a [href]="item.href" [class.current]="item.href === '#home'" [attr.aria-current]="item.href === '#home' ? 'page' : null" (click)="closeMenu()">{{ item.label }}</a>
+      }
+      <a class="nav-resume" [href]="profile.resumeHref" download (click)="closeMenu()">Resume <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</header>

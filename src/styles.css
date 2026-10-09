@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+	color-scheme: light;
+	--color-primary: #1769e0;
+	--color-primary-hover: #0f54be;
+	--color-logo-primary: #3b82f6;
+	--color-cyan-accent: #22d3ee;
+	--color-cyan-glow-soft: rgb(34 211 238 / 28%);
+	--color-cyan-glow-strong: rgb(34 211 238 / 45%);
+	--color-primary-soft: #eaf2ff;
+	--color-heading: #102a43;
+	--color-text: #334155;
+	--color-muted: #64748b;
+	--color-background: #f7fafe;
+	--color-surface: #ffffff;
+	--color-border: #dce7f5;
+	--color-success: #087f5b;
+	--color-footer: #102a43;
+	--color-footer-muted: #b7c7d9;
+	--color-footer-border: rgb(220 231 245 / 20%);
+	--color-selection: #d8e8ff;
+	--color-intro-background: #0b1120;
+	--color-intro-name: #f8fafc;
+	--color-intro-subtitle: #94a3b8;
+	--radius-card: 12px;
+	--radius-control: 8px;
+	--radius-circle: 50%;
+	--shadow-card: 0 4px 18px rgb(16 42 67 / 6%);
+	--shadow-header: 0 1px 8px rgb(16 42 67 / 4%);
+	--content-max: 1200px;
+	--header-height: 70px;
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-5: 24px;
+	--space-6: 32px;
+	--space-7: 40px;
+	--space-8: 48px;
+	--font-body: system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-display: system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-size-body: 16px;
+	--font-size-small: 13px;
+	--font-size-section: 24px;
+	--line-height-body: 1.6;
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + var(--space-2)); }
+body { margin: 0; color: var(--color-text); background: var(--color-background); font-family: var(--font-body); font-size: var(--font-size-body); line-height: var(--line-height-body); -webkit-font-smoothing: antialiased; }
+button, a { font: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--color-primary); outline-offset: var(--space-1); }
+::selection { color: var(--color-heading); background: var(--color-selection); }
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

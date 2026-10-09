@@ -1,0 +1,40 @@
+<section class="about-grid section-wrap" id="about" aria-labelledby="about-title">
+  <article class="about-card surface-card">
+    <p class="section-kicker">A little about my work</p>
+    <h2 id="about-title">About me</h2>
+    <p class="about-copy">{{ profile.summary }}</p>
+    <p class="about-copy">I work on enterprise applications in wealth management and financial services, contributing across backend development, testing, production support, and performance improvement.</p>
+
+    <div class="principles-grid">
+      @for (principle of profile.principles; track principle.title) {
+        <article class="principle">
+          <span class="principle-icon" aria-hidden="true">{{ principle.symbol }}</span>
+          <h3>{{ principle.title }}</h3>
+          <p>{{ principle.description }}</p>
+        </article>
+      }
+    </div>
+  </article>
+
+  <aside class="about-aside">
+    <section class="strength-card surface-card" aria-labelledby="strength-title">
+      <p class="section-kicker">How I contribute</p>
+      <h2 id="strength-title">Core strengths</h2>
+      <ul>
+        @for (strength of profile.strengths; track strength) {
+          <li><span aria-hidden="true">✓</span>{{ strength }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="stack-card" aria-labelledby="stack-title">
+      <p class="section-kicker">Technologies I work with</p>
+      <h2 id="stack-title">Backend toolkit</h2>
+      <div class="technology-list">
+        @for (technology of profile.heroTechnologies; track technology) {
+          <span>{{ technology }}</span>
+        }
+      </div>
+    </section>
+  </aside>
+</section>

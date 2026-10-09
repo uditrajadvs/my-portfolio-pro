@@ -1,1 +1,19 @@
-<h1>Hi my name UDIT</h1>
+<app-layout>
+	<app-home />
+	<app-about />
+
+	@for (section of upcomingSections; track section.id) {
+		<section class="phase-teaser" [id]="section.id" [attr.aria-labelledby]="section.id + '-title'">
+			<div>
+				<p class="phase-label">PORTFOLIO · {{ section.phase }}</p>
+				<h2 [id]="section.id + '-title'">{{ section.title }}</h2>
+				<p class="phase-copy">This section is planned for the next portfolio development phase.</p>
+			</div>
+			<span class="phase-index" aria-hidden="true">{{ section.phase }}</span>
+		</section>
+	}
+</app-layout>
+
+@if (showIntro()) {
+	<app-logo-intro (complete)="finishIntro()" />
+}
