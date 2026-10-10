@@ -10,19 +10,28 @@ import { LogoIntro } from './shared/components/logo-intro/logo-intro';
 })
 export class App {
   protected readonly showIntro = signal(true);
-  protected readonly darkMode = signal(false);
+  protected readonly darkMode = signal(true);
 
   constructor() {
-    if (typeof localStorage !== 'undefined') {
-      this.darkMode.set(localStorage.getItem('portfolio-theme') === 'dark');
-    }
+    const isDark =
+      typeof localStorage === 'undefined' || localStorage.getItem('portfolio-theme') !== 'light';
+    this.darkMode.set(isDark);
+    this.applyDocumentTheme(isDark);
   }
 
   protected setTheme(isDark: boolean): void {
     this.darkMode.set(isDark);
+    this.applyDocumentTheme(isDark);
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
     }
+  }
+
+  private applyDocumentTheme(isDark: boolean): void {
+    if (typeof document === 'undefined') {
+      return;
+    }
+    document.documentElement.classList.toggle('theme-dark', isDark);
   }
 
   protected finishIntro(): void {

@@ -107,7 +107,11 @@ main .value-item h3 { font-size: var(--font-size-card-title) !important; line-he
 main .greeting, main .eyebrow, main .card-eyebrow, main .profile-title,
 main .small-action, main .back-link, main .card-link,
 main .page-heading > p:first-child,
-main .action { font-size: var(--font-size-secondary) !important; }
+main .action,
+main .contact-submit { font-size: var(--font-size-secondary) !important; }
+main .contact-form label,
+main .contact-form input,
+main .contact-form textarea { font-size: var(--font-size-body) !important; line-height: var(--line-height-body) !important; }
 main .detail-card,
 main .profile-card,
 main .content-card,

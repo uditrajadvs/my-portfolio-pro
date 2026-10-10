@@ -45,8 +45,6 @@ describe('App', () => {
 
     const darkButton = fixture.nativeElement.querySelector('[aria-label="Dark mode"]') as HTMLButtonElement;
     const lightButton = fixture.nativeElement.querySelector('[aria-label="Light mode"]') as HTMLButtonElement;
-    darkButton.click();
-    fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelector('app-layout')?.classList.contains('theme-dark')).toBe(true);
     expect(darkButton.getAttribute('aria-pressed')).toBe('true');
@@ -55,8 +53,32 @@ describe('App', () => {
     lightButton.click();
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('app-layout')?.classList.contains('theme-dark')).toBe(false);
+    expect(darkButton.getAttribute('aria-pressed')).toBe('false');
+    expect(lightButton.getAttribute('aria-pressed')).toBe('true');
+
+    darkButton.click();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('app-layout')?.classList.contains('theme-dark')).toBe(true);
     expect(fixture.nativeElement.querySelector('[aria-label="Dark mode"]')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('[aria-label="Light mode"]')).toBeTruthy();
+  });
+
+  it('should render a Kwesforms contact form on the contact page', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/contact');
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const form = fixture.nativeElement.querySelector('form.kf-form') as HTMLFormElement;
+    expect(form).toBeTruthy();
+    expect(form.getAttribute('method')?.toLowerCase()).toBe('post');
+    expect(form.getAttribute('action')).toBe('https://kwesforms.com/api/f/rHLhEpyDurp3vFt3Galy');
+    expect(form.querySelector('input[name="name"]')).toBeTruthy();
+    expect(form.querySelector('input[name="email"]')).toBeTruthy();
+    expect(form.querySelector('input[name="subject"]')).toBeTruthy();
+    expect(form.querySelector('textarea[name="message"]')).toBeTruthy();
+    expect(form.querySelector('button[type="submit"]')?.textContent).toContain('Send message');
   });
 
   it('should navigate to other sections without leaving the SPA', async () => {
