@@ -91,7 +91,7 @@ export const routes: Routes = [
     ...section({
       title: 'Contact',
       eyebrow: 'GET IN TOUCH',
-      summary: 'Reach out by email or phone, or connect through a professional profile.',
+      summary: 'Send a message with the form below, or reach out by email, phone, or a professional profile.',
       contact: {
         email: 'uditraj.se@gmail.com',
         phone: profileData.phone,

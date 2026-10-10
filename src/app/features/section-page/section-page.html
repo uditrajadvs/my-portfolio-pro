@@ -40,12 +40,38 @@
       }
     </div>
   } @else if (content().contact) {
-    <section class="contact-options" aria-label="Contact methods">
-      <a [href]="'mailto:' + content().contact!.email">Email <strong>{{ content().contact!.email }}</strong></a>
-      <a [href]="'tel:' + content().contact!.phone">Phone <strong>{{ content().contact!.phone }}</strong></a>
-      <a [href]="content().contact!.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn <strong>View profile ↗</strong></a>
-      <a [href]="content().contact!.github" target="_blank" rel="noopener noreferrer">GitHub <strong>View profile ↗</strong></a>
-    </section>
+    <div class="contact-layout">
+      <form
+        method="POST"
+        class="kf-form contact-form"
+        action="https://kwesforms.com/api/f/rHLhEpyDurp3vFt3Galy"
+        aria-labelledby="contact-form-title"
+      >
+        <h2 id="contact-form-title">Send a message</h2>
+        <p class="contact-form-intro">Use this form to email me directly. I will get back to you as soon as I can.</p>
+
+        <label for="contact-name">Your name</label>
+        <input id="contact-name" type="text" name="name" autocomplete="name" maxlength="255" [attr.rules]="'required|max:255'" />
+
+        <label for="contact-email">Your email</label>
+        <input id="contact-email" type="email" name="email" autocomplete="email" maxlength="255" [attr.rules]="'required|email|max:255'" />
+
+        <label for="contact-subject">Subject</label>
+        <input id="contact-subject" type="text" name="subject" maxlength="255" [attr.rules]="'required|max:255'" />
+
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="message" rows="6" maxlength="5000" [attr.rules]="'required|max:5000'"></textarea>
+
+        <button class="contact-submit" type="submit">Send message</button>
+      </form>
+
+      <section class="contact-options" aria-label="Contact methods">
+        <a [href]="'mailto:' + content().contact!.email">Email <strong>{{ content().contact!.email }}</strong></a>
+        <a [href]="'tel:' + content().contact!.phone">Phone <strong>{{ content().contact!.phone }}</strong></a>
+        <a [href]="content().contact!.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn <strong>View profile ↗</strong></a>
+        <a [href]="content().contact!.github" target="_blank" rel="noopener noreferrer">GitHub <strong>View profile ↗</strong></a>
+      </section>
+    </div>
   } @else if (content().items?.length) {
     <ul class="content-list">
       @for (item of content().items; track item) { <li>{{ item }}</li> }

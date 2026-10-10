@@ -1,6 +1,10 @@
-import { Component, input } from '@angular/core';
+import { afterNextRender, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import type { CareerRecord } from '../../data/career.data';
+
+interface KwesFormsApi {
+  init?: () => void;
+}
 
 export interface SectionPageContent {
   title: string;
@@ -20,4 +24,14 @@ export interface SectionPageContent {
 })
 export class SectionPage {
   readonly content = input.required<SectionPageContent>();
+
+  constructor() {
+    afterNextRender(() => {
+      if (!this.content().contact) {
+        return;
+      }
+      const kwes = (window as unknown as { kwesforms?: KwesFormsApi }).kwesforms;
+      kwes?.init?.();
+    });
+  }
 }
