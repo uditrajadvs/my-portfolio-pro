@@ -1,0 +1,21 @@
+:host { position: fixed; inset: 0; z-index: 100; display: block; }
+.intro-screen { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; color: var(--color-intro-name); background: var(--color-intro-background); animation: intro-fade-out 360ms ease-in 1.48s forwards; }
+.intro-lockup { display: grid; justify-items: center; gap: 24px; text-align: center; }
+.intro-logo { width: clamp(170px, 38vw, 260px); height: auto; overflow: visible; filter: drop-shadow(0 0 0 transparent); animation: logo-glow 550ms ease-out 520ms forwards; }
+.intro-logo path { fill: var(--color-logo-primary); stroke: none; }
+.intro-logo .letter-u { fill: none; stroke: var(--color-logo-primary); stroke-width: 30; stroke-linecap: butt; stroke-linejoin: round; }
+.intro-logo .letter-r-core { opacity: 0; transform: translateX(58px); animation: letter-from-right 520ms cubic-bezier(.2,.8,.2,1) 80ms forwards; }
+.intro-logo .letter-r-leg { opacity: 0; transform: translateX(58px); animation: letter-from-right 520ms cubic-bezier(.2,.8,.2,1) 80ms forwards; }
+.letter-u { opacity: 0; transform: translateX(-58px); animation: letter-from-left 520ms cubic-bezier(.2,.8,.2,1) 80ms forwards; }
+.intro-name p { margin: 0; color: var(--color-intro-name); font: 600 clamp(22px, 5vw, 30px)/1.2 system-ui, -apple-system, 'Segoe UI', sans-serif; opacity: 0; animation: name-appear 380ms ease-out 770ms forwards; }
+.intro-name span { display: block; margin-top: 8px; color: var(--color-intro-subtitle); font: 500 12px/1.4 system-ui, -apple-system, 'Segoe UI', sans-serif; letter-spacing: .2em; opacity: 0; animation: name-appear 380ms ease-out 1010ms forwards; }
+@keyframes letter-from-left { to { opacity: 1; transform: translateX(0); } }
+@keyframes letter-from-right { to { opacity: 1; transform: translateX(0); } }
+@keyframes logo-glow { 30% { filter: drop-shadow(0 0 7px var(--color-cyan-glow-strong)); } 100% { filter: drop-shadow(0 0 15px var(--color-cyan-glow-soft)); } }
+@keyframes name-appear { to { opacity: 1; transform: translateY(0); } from { transform: translateY(8px); } }
+@keyframes intro-fade-out { to { opacity: 0; visibility: hidden; } }
+@media (max-width: 480px) { .intro-lockup { gap: 18px; } .intro-name span { font-size: 11px; } }
+@media (prefers-reduced-motion: reduce) {
+  .intro-screen { animation-duration: 1ms; animation-delay: 0ms; }
+  .intro-logo, .letter-u, .letter-r-core, .letter-r-leg, .intro-name p, .intro-name span { animation-duration: 1ms; animation-delay: 0ms; }
+}

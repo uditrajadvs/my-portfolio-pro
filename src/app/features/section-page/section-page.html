@@ -1,0 +1,61 @@
+<section class="section-page dashboard-wrap" aria-labelledby="page-title">
+  <header class="page-heading">
+    <p>{{ content().eyebrow }}</p>
+    <h1 id="page-title">{{ content().title }}</h1>
+    <p class="page-summary">{{ content().summary }}</p>
+  </header>
+
+  @if (content().groups?.length) {
+    <div class="skill-groups">
+      @for (group of content().groups; track group.title) {
+        <section class="content-card" [attr.aria-label]="group.title">
+          <h2>{{ group.title }}</h2>
+          <div class="skill-list">
+            @for (skill of group.skills; track skill) { <span>{{ skill }}</span> }
+          </div>
+        </section>
+      }
+    </div>
+  } @else if (content().records?.length) {
+    <div class="career-records">
+      @for (record of content().records; track record.title) {
+        <article class="career-card">
+          <header class="career-card-heading">
+            <div><h2>{{ record.title }}</h2><p>{{ record.organization }}</p></div>
+            @if (record.period) { <span class="career-period">{{ record.period }}</span> }
+          </header>
+          @if (record.location) { <p class="career-location">{{ record.location }}</p> }
+          <p class="career-description">{{ record.description }}</p>
+          @if (record.highlights.length) {
+            <ul>
+              @for (highlight of record.highlights; track highlight) { <li>{{ highlight }}</li> }
+            </ul>
+          }
+          @if (record.technologies?.length) {
+            <div class="skill-list">
+              @for (technology of record.technologies; track technology) { <span>{{ technology }}</span> }
+            </div>
+          }
+        </article>
+      }
+    </div>
+  } @else if (content().contact) {
+    <section class="contact-options" aria-label="Contact methods">
+      <a [href]="'mailto:' + content().contact!.email">Email <strong>{{ content().contact!.email }}</strong></a>
+      <a [href]="'tel:' + content().contact!.phone">Phone <strong>{{ content().contact!.phone }}</strong></a>
+      <a [href]="content().contact!.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn <strong>View profile ↗</strong></a>
+      <a [href]="content().contact!.github" target="_blank" rel="noopener noreferrer">GitHub <strong>View profile ↗</strong></a>
+    </section>
+  } @else if (content().items?.length) {
+    <ul class="content-list">
+      @for (item of content().items; track item) { <li>{{ item }}</li> }
+    </ul>
+  } @else {
+    <div class="empty-state">
+      <span aria-hidden="true">✦</span>
+      <p>Details will appear here when they are provided.</p>
+    </div>
+  }
+
+  <a class="back-link" routerLink="/overview">← Back to overview</a>
+</section>

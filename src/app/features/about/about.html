@@ -1,0 +1,92 @@
+<section class="about-page dashboard-wrap" aria-labelledby="about-title">
+  <header class="about-heading">
+    <span class="heading-icon" aria-hidden="true">◎</span>
+    <div>
+      <h1 id="about-title">About Me</h1>
+      <p>Get to know my background, what drives me and my professional journey so far.</p>
+    </div>
+  </header>
+
+  <div class="about-layout">
+    <div class="about-left-column">
+      <article class="profile-card">
+        <img
+          class="about-photo"
+          src="/images/myProfilePhoto/ud-photo.jpeg"
+          alt="Udit Raj"
+          width="796"
+          height="1188"
+        />
+        <div class="profile-intro">
+          <h2>{{ profile.name }}</h2>
+          <p class="profile-title">{{ profile.title }}</p>
+          <ul class="profile-facts" aria-label="Professional contact and role information">
+            <li><span aria-hidden="true">▣</span>{{ profile.employer }}</li>
+            <li><span aria-hidden="true">⌁</span>{{ profile.experienceLabel }} of experience</li>
+            <li><span aria-hidden="true">⌘</span>{{ profile.role }}</li>
+          </ul>
+          <div class="profile-actions">
+            <a class="small-action" [href]="profile.resumeHref" download>Download resume <span aria-hidden="true">↓</span></a>
+            <a class="small-action small-action-primary" routerLink="/contact">Contact <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <blockquote class="profile-quote">
+          <span aria-hidden="true">“</span>
+          <div><p>{{ profile.thought }}</p><cite>— {{ profile.thoughtAttribution }}</cite></div>
+        </blockquote>
+      </article>
+
+      <section class="detail-card" aria-labelledby="facts-title">
+        <h2 class="card-title" id="facts-title"><span aria-hidden="true">▧</span> Quick facts</h2>
+        <dl class="facts-grid">
+          <div><dt>Full name</dt><dd>{{ profile.name }}</dd></div>
+          <div><dt>Professional title</dt><dd>{{ profile.title }}</dd></div>
+          <div><dt>Experience</dt><dd>{{ profile.experienceLabel }}</dd></div>
+          <div><dt>Employer</dt><dd>{{ profile.employer }}</dd></div>
+          <div><dt>Industry</dt><dd>Wealth management and financial services</dd></div>
+          <div><dt>Primary focus</dt><dd>Enterprise backend applications</dd></div>
+        </dl>
+      </section>
+    </div>
+
+    <div class="about-right-column">
+      <section class="detail-card summary-card" aria-labelledby="summary-title">
+        <div class="card-title-row">
+          <h2 class="card-title" id="summary-title"><span aria-hidden="true">♧</span> Professional summary</h2>
+        </div>
+        <p>{{ profile.summary }}</p>
+        <div class="bring-section">
+          <h3>What I bring</h3>
+          <ul>
+            @for (strength of profile.strengths; track strength) {
+              <li><span aria-hidden="true">✓</span>{{ strength }}</li>
+            }
+          </ul>
+        </div>
+      </section>
+
+      <section class="detail-card focus-card" aria-labelledby="interests-title">
+        <h2 class="card-title" id="interests-title"><span aria-hidden="true">♡</span> Professional interests</h2>
+        <p class="section-note">Areas aligned with my current work and technical background.</p>
+        <div class="interest-list">
+          @for (interest of profile.professionalInterests; track interest.label) {
+            <span class="interest-chip"><span aria-hidden="true">{{ interest.symbol }}</span>{{ interest.label }}</span>
+          }
+        </div>
+      </section>
+
+      <section class="detail-card values-card" aria-labelledby="values-title">
+        <h2 class="card-title" id="values-title"><span aria-hidden="true">☆</span> My values</h2>
+        <div class="values-grid">
+          @for (value of profile.principles; track value.title) {
+            <article class="value-item">
+              <span class="value-icon" aria-hidden="true">{{ value.symbol }}</span>
+              <h3>{{ value.title }}</h3>
+              <p>{{ value.description }}</p>
+            </article>
+          }
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
