@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { About } from './features/about/about';
 import { Home } from './features/home/home';
+import { Resume } from './features/resume/resume';
 import { SectionPage, SectionPageContent } from './features/section-page/section-page';
 import {
   achievementData,
@@ -17,6 +18,11 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'overview' },
   { path: 'overview', component: Home, title: 'Overview | Udit Raj' },
   { path: 'about', component: About, title: 'About Me | Udit Raj' },
+  {
+    path: 'resume',
+    component: Resume,
+    title: 'Resume | Udit Raj',
+  },
   {
     path: 'experience',
     ...section({

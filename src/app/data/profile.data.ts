@@ -31,7 +31,7 @@ export const profileData: PortfolioProfile = {
 	experienceLabel: '3+ years',
 	summary:
 		'Software Engineer with 3+ years of experience building and supporting enterprise backend applications and responsive client experiences. Focused on Java, Spring Boot, REST APIs, microservices, SQL, and enterprise integration across wealth-management and freelance projects.',
-	resumeHref: '/documents/resume/Udit_Raj.pdf',
+	resumeHref: 'https://drive.google.com/uc?export=download&id=1mDMbSgoB4wwszeKrgRfO75nsk08fl-8g',
 	phone: '7061609300',
 	heroTechnologies: ['Java', 'Spring Boot', 'REST APIs', 'Apache Camel'],
 	quickFacts: [

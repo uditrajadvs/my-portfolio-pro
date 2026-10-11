@@ -22,6 +22,7 @@ export class Header {
     { label: 'Projects', href: '/projects' },
     { label: 'Achievements', href: '/achievements' },
     { label: 'Certifications', href: '/certifications' },
+    { label: 'Resume', href: '/resume' },
     { label: 'Contact', href: '/contact' },
   ];
 
