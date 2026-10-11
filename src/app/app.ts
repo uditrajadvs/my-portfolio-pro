@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnDestroy, signal } from '@angular/core';
 import { Layout } from './core/layout/layout';
 import { LogoIntro } from './shared/components/logo-intro/logo-intro';
 
@@ -8,8 +8,10 @@ import { LogoIntro } from './shared/components/logo-intro/logo-intro';
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
-export class App {
+export class App implements OnDestroy {
   protected readonly showIntro = signal(true);
+  protected readonly revealHome = signal(false);
+  private revealTimer?: ReturnType<typeof setTimeout>;
   protected readonly darkMode = signal(true);
 
   constructor() {
@@ -35,6 +37,11 @@ export class App {
   }
 
   protected finishIntro(): void {
+    this.revealHome.set(true);
     this.showIntro.set(false);
+    this.revealTimer = setTimeout(() => this.revealHome.set(false), 600);
+  }
+  ngOnDestroy(): void {
+    if (this.revealTimer) clearTimeout(this.revealTimer);
   }
 }

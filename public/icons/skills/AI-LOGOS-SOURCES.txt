@@ -1,0 +1,9 @@
+AI tool brand SVG assets
+Source: https://github.com/lobehub/lobe-icons/tree/master/packages/static-svg/icons
+Gemini: gemini-color.svg
+GitHub Copilot: githubcopilot.svg
+ChatGPT: openai.svg (OpenAI knot mark)
+Cursor: cursor.svg
+Claude Code: claude-color.svg (Claude brand mark)
+Collection license: LOBE-ICONS-LICENSE.txt
+Brand names and marks belong to their respective owners. These assets identify the tools; they do not imply endorsement.

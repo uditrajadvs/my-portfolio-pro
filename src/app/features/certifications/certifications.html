@@ -1,0 +1,17 @@
+﻿<section class="certifications-page" aria-labelledby="page-title">
+  <header class="certifications-heading"><div><p class="credential-eyebrow">LEARNING INTO PRACTICE</p><h1 id="page-title">Certifications</h1><p>A foundation in Java. A commitment to keep learning.</p></div><span class="credential-count">{{ certificates.length }} credential{{ certificates.length === 1 ? '' : 's' }}</span></header>
+  @for (certificate of certificates; track certificate.title) {
+    <article class="credential-card">
+      <div class="credential-visual" aria-label="Java credential overview">
+        <span class="issuer-wordmark">{{ certificate.organization }}</span>
+        <div class="java-emblem"><img src="/icons/skills/java.svg" alt="" width="96" height="96" /></div>
+        <strong>Java</strong><span class="credential-visual-caption">Professional certification</span>
+        <span class="credential-seal" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m9 9 2 2 4-4M8 14l-2 8 6-3 6 3-2-8"/></svg></span>
+      </div>
+      <div class="credential-content"><p class="credential-eyebrow">TECHNICAL CREDENTIAL</p><h2>{{ certificate.title }}</h2><p class="credential-description">{{ certificate.description }}</p><dl class="credential-facts"><div><dt>Issued by</dt><dd>{{ certificate.organization }}</dd></div><div><dt>Technology</dt><dd>Java</dd></div></dl>
+        @if (certificate.document) { <div class="document-actions"><a class="credential-primary" [href]="certificate.document.viewHref" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M10 3H3v18h18v-7"/></svg>View certificate</a><a [href]="certificate.document.downloadHref" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v5h14v-5"/></svg>Download certificate</a></div><p class="credential-note">View the original document on Google Drive in a new tab.</p> }
+      </div>
+    </article>
+  }
+  <aside class="credential-next"><div><span class="credential-eyebrow">BEYOND THE CREDENTIAL</span><h2>See the knowledge at work.</h2><p>Explore my backend toolkit and the projects where I apply it.</p></div><nav aria-label="Explore applied skills"><a routerLink="/skills">Explore skills →</a><a routerLink="/projects">View projects →</a></nav></aside>
+</section>

@@ -1,19 +1,11 @@
-<section
-  class="intro-screen"
-  role="status"
-  aria-live="polite"
-  aria-label="Welcome to Udit Raj’s portfolio"
-  (animationend)="onAnimationEnd($event)"
->
+﻿<section class="intro-screen" role="status" aria-live="polite" aria-label="Welcome to {{ profile.name }} portfolio" (animationend)="onAnimationEnd($event)">
   <div class="intro-lockup">
     <svg class="intro-logo" viewBox="0 0 422 315" role="img" aria-label="UR">
-      <path class="letter-u" d="M74 48v154a71 71 0 0 0 142 0v-88" />
+      <path class="letter-u" pathLength="1" d="M74 48v154a71 71 0 0 0 142 0v-88" />
       <path class="letter-r-core" d="M131 193V48h182a70 70 0 0 1 0 140h-60v-30h60a40 40 0 0 0 0-80H161v115a15 15 0 0 1-30 0Z" />
       <path class="letter-r-leg" d="M253 208h83l63 78h-34l-29-46h-53v46h-30z" />
     </svg>
-    <div class="intro-name">
-      <p>Udit Raj</p>
-      <span>SOFTWARE ENGINEER</span>
-    </div>
+    <div class="intro-name"><p>{{ profile.name }}</p><span>{{ profile.title }}</span></div>
   </div>
+  <button class="intro-skip" type="button" (click)="finish()">Skip intro <span aria-hidden="true">→</span></button>
 </section>

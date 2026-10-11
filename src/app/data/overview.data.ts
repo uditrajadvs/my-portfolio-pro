@@ -1,4 +1,8 @@
-import { projectData } from './career.data';
+import { projectData } from './projects.data';
+import { educationData } from './education.data';
+import { experienceData } from './experience.data';
+import { profileData } from './profile.data';
+import { previewSkills } from './skills.data';
 
 export interface OverviewCard {
   id: string;
@@ -14,31 +18,31 @@ export const overviewCards: OverviewCard[] = [
     id: 'about',
     title: 'About me',
     eyebrow: 'PROFILE',
-    summary: 'Software Engineer with 3+ years across enterprise backend engineering and freelance client delivery.',
-    detail: 'Java · financial services · responsive web',
+    summary: `${profileData.title} with ${profileData.experienceLabel} across enterprise backend engineering and freelance client delivery.`,
+    detail: `${profileData.role} | ${profileData.employer} | Wealth management`,
     icon: '◎',
   },
   {
     id: 'education',
     title: 'Education',
     eyebrow: 'ACADEMIC BACKGROUND',
-    summary: 'B.Tech in Electronics and Communication Engineering.',
-    detail: 'IIIT Ranchi · 2019–2023 · CGPA 7.87',
+    summary: educationData[0].qualification,
+    detail: `${educationData[0].institution}  |  ${educationData[0].period}  |  ${educationData[0].result}`,
     icon: '◇',
   },
   {
     id: 'experience',
     title: 'Experience',
-    eyebrow: 'CGI',
-    summary: 'Software Engineer / Java Backend Developer',
-    detail: 'Aug 2024–Sep 2026 · CGI',
+    eyebrow: experienceData[0].organization,
+    summary: profileData.role,
+    detail: `${experienceData[0].period}  |  ${experienceData[0].organization}`,
     icon: '▤',
   },
   {
     id: 'skills',
     title: 'Top skills',
     eyebrow: 'BACKEND TOOLKIT',
-    summary: 'Java · Spring Boot · REST APIs · Microservices',
+    summary: previewSkills.join('  |  '),
     detail: 'SQL · Apache Camel · ActiveMQ · AWS',
     icon: '</>',
   },

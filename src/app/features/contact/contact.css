@@ -1,0 +1,40 @@
+:host { display: block; }
+.contact-page { width: min(1000px, calc(100% - 32px)); margin-inline: auto; padding: 24px 0; --font-size-section: 18px; --font-size-body: 14px; }
+.contact-heading { text-align: center; margin-bottom: 24px; }
+.contact-heading h1 { margin: 0; color: var(--color-heading); }
+.contact-heading p { max-width: 700px; margin: 12px auto 0; color: var(--color-muted); text-wrap: balance; }
+.contact-layout { display: grid; grid-template-columns: 1.1fr 1fr; align-items: stretch; gap: 20px; }
+.contact-form, .contact-card { min-width: 0; padding: 22px; border: 1px solid var(--color-border); border-radius: var(--radius-card); background: var(--color-surface); box-shadow: var(--shadow-card); }
+.contact-form { display: grid; align-content: start; gap: 12px; }
+.contact-form h2, .contact-card h2 { margin: 0 0 6px; color: var(--color-heading); }
+.form-field { display: grid; gap: 5px; }
+.form-field label { color: var(--color-text); font-size: 13px; font-weight: 600; }
+.form-field label span { color: #e5484d; }
+.form-field input, .form-field select, .form-field textarea { width: 100%; min-height: 42px; padding: 9px 12px; border: 1px solid var(--color-border); border-radius: 6px; color: var(--color-heading); background: var(--color-background); font: inherit; font-size: 14px; }
+.form-field textarea { min-height: 100px; resize: vertical; }
+.form-field input::placeholder, .form-field textarea::placeholder { color: var(--color-muted); }
+.form-field :is(input, select, textarea):focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.contact-submit { display: flex; justify-content: center; align-items: center; gap: 9px; width: 100%; min-height: 44px; border: 0; border-radius: 6px; background: var(--color-primary); color: #fff; font-weight: 600; cursor: pointer; }
+.contact-submit:hover { background: var(--color-primary-hover); }
+.contact-submit svg, .channel-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.form-note { margin: 0; text-align: center; color: var(--color-muted); }
+.contact-page .form-note { font-size: 12px !important; }
+.contact-channels { display: grid; gap: 12px; margin: 18px 0; }
+.contact-channel { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 8px; border-radius: 8px; color: var(--color-text); text-decoration: none; }
+.contact-channel:hover { background: var(--color-primary-soft); }
+.channel-icon { display: grid; place-items: center; flex: 0 0 42px; height: 42px; border-radius: 50%; color: var(--color-primary); background: var(--color-primary-soft); }
+.linkedin-mark { font-size: 23px; font-weight: 800; }
+.contact-channel strong { display: block; font-size: 14px; }
+.contact-channel small { display: block; margin-top: 4px; color: var(--color-muted); font-size: 12px; overflow-wrap: anywhere; }
+.channel-arrow { margin-left: auto; color: var(--color-primary); }
+.contact-form .kf-error, .contact-form .kwes-error { color: #e5484d; font-size: 13px; }
+.contact-form .kf-success, .contact-form .kwes-success { color: var(--color-success); }
+@media (max-width: 700px) { .contact-layout { grid-template-columns: 1fr; gap: 16px; } .contact-form, .contact-card { padding: 18px; } }
+
+.reach-out { margin-top: 24px; padding: 20px 0 0; border-top: 1px solid var(--color-border); }
+.reach-out strong { display: block; color: var(--color-heading); font-size: 17px; line-height: 1.4; }
+.reach-out p { margin: 8px 0 0; color: var(--color-muted); }
+.contact-page .reach-out-signature { position: relative; margin: 24px 12px 12px auto; width: fit-content; padding: 0 12px 8px; text-align: center; color: var(--color-primary); font-family: 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive; font-size: clamp(23px, 2.4vw, 28px) !important; font-weight: 600; font-style: italic; letter-spacing: -.04em; line-height: 1.35 !important; transform: rotate(-7deg); text-shadow: 1px 2px 0 var(--color-primary-soft); }
+.reach-out-signature span { position: relative; display: inline-block; padding: 0 5px 8px; }
+.reach-out-signature span::after { content: ''; position: absolute; left: -4px; right: -8px; bottom: 0; height: 8px; border-bottom: 3px solid var(--color-primary); border-radius: 50%; transform: rotate(-3deg); opacity: .7; }
+.reach-out-signature::before { content: ''; position: absolute; top: -8px; left: -5px; width: 14px; height: 9px; border-top: 2px solid var(--color-primary); border-bottom: 2px solid var(--color-primary); transform: rotate(-25deg); opacity: .45; }

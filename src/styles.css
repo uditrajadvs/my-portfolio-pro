@@ -31,26 +31,26 @@
 	--shadow-header: 0 1px 8px rgb(16 42 67 / 4%);
 	--shadow-welcome-glow: 0 14px 38px rgb(59 130 246 / 15%);
 	--shadow-card-hover: 0 12px 30px rgb(59 130 246 / 18%);
-	--content-max: 1200px;
+	--content-max: 1320px;
 	--header-height: 70px;
-	--main-content-zoom: 1.04;
+	--main-content-zoom: 1;
 	--space-1: 4px;
 	--space-2: 8px;
 	--space-3: 12px;
 	--space-4: 16px;
-	--space-5: 24px;
-	--space-6: 32px;
-	--space-7: 40px;
-	--space-8: 48px;
+	--space-5: 20px;
+	--space-6: 24px;
+	--space-7: 28px;
+	--space-8: 32px;
 	--font-body: system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--font-display: system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--font-size-body: 16px;
 	--font-size-small: 14px;
 	--font-size-secondary: 15px;
 	--font-size-card-title: 18px;
-	--font-size-section: 22px;
-	--font-size-page-title: 36px;
-	--line-height-body: 1.6;
+	--font-size-section: 20px;
+	--font-size-page-title: 30px;
+	--line-height-body: 1.5;
 }
 
 .theme-dark {
@@ -77,46 +77,142 @@
 	--shadow-card-hover: 0 12px 30px rgb(59 130 246 / 25%);
 }
 
-* { box-sizing: border-box; }
-html { min-width: 320px; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + var(--space-2)); }
-body { margin: 0; color: var(--color-text); background: var(--color-background); font-family: var(--font-body); font-size: var(--font-size-body); line-height: var(--line-height-body); -webkit-font-smoothing: antialiased; }
-app-root { display: block; min-height: 100vh; }
-button, a { font: inherit; }
-a:focus-visible, button:focus-visible { outline: 3px solid var(--color-primary); outline-offset: var(--space-1); }
-::selection { color: var(--color-heading); background: var(--color-selection); }
+* {
+	box-sizing: border-box;
+}
+
+html {
+	min-width: 320px;
+	scroll-behavior: smooth;
+	scroll-padding-top: calc(var(--header-height) + var(--space-2));
+}
+
+body {
+	margin: 0;
+	color: var(--color-text);
+	background: var(--color-background);
+	font-family: var(--font-body);
+	font-size: var(--font-size-body);
+	line-height: var(--line-height-body);
+	-webkit-font-smoothing: antialiased;
+}
+
+app-root {
+	display: block;
+	min-height: 100vh;
+}
+
+button,
+a {
+	font: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+	outline: 3px solid var(--color-primary);
+	outline-offset: var(--space-1);
+}
+
+::selection {
+	color: var(--color-heading);
+	background: var(--color-selection);
+}
 
 /* Override component-scoped defaults so similar content reads uniformly on every SPA screen. */
-main h1 { font-size: var(--font-size-page-title) !important; line-height: 1.2 !important; }
-main .about-heading h1, main .page-heading h1 { font-size: var(--font-size-page-title) !important; }
-main .welcome-card h1 { font-size: clamp(42px, 4.5vw, 54px) !important; line-height: 1.1 !important; }
-main h2, main .card-title, main .glance-card h2 { font-size: var(--font-size-section) !important; line-height: 1.3 !important; }
-main h3, main .card-heading h2, main .section-heading h2,
-main .content-card h2, main .profile-intro h2 { font-size: var(--font-size-card-title) !important; line-height: 1.35 !important; }
-main p, main li, main dd, main dt, main blockquote, main .skill-list span,
-main .interest-chip, main .facts-grid dt, main .facts-grid dd,
-main .profile-facts li, main .profile-quote p, main .profile-quote cite,
-main .section-note, main .summary-card > p, main .bring-section li,
-main .about-heading p, main .page-summary, main .content-list li,
-main .empty-state p, main .card-summary, main .card-detail,
-main .project-list li, main .work-note, main .achievement-empty p,
-main .achievement-empty strong, main .value-item p {
+main h1 {
+	font-size: var(--font-size-page-title) !important;
+	line-height: 1.2 !important;
+}
+
+main .about-heading h1,
+main .page-heading h1 {
+	font-size: var(--font-size-page-title) !important;
+}
+
+main .welcome-card h1 {
+	font-size: clamp(42px, 4.5vw, 54px) !important;
+	line-height: 1.1 !important;
+}
+
+main h2,
+main .card-title,
+main .glance-card h2 {
+	font-size: var(--font-size-section) !important;
+	line-height: 1.3 !important;
+}
+
+main h3,
+main .card-heading h2,
+main .section-heading h2,
+main .content-card h2,
+main .profile-intro h2 {
+	font-size: var(--font-size-card-title) !important;
+	line-height: 1.35 !important;
+}
+
+main p,
+main li,
+main dd,
+main dt,
+main blockquote,
+main .skill-list span,
+main .interest-chip,
+main .facts-grid dt,
+main .facts-grid dd,
+main .profile-facts li,
+main .profile-quote p,
+main .profile-quote cite,
+main .section-note,
+main .summary-card>p,
+main .bring-section li,
+main .about-heading p,
+main .page-summary,
+main .content-list li,
+main .empty-state p,
+main .card-summary,
+main .card-detail,
+main .project-list li,
+main .work-note,
+main .achievement-empty p,
+main .achievement-empty strong,
+main .value-item p {
 	font-size: var(--font-size-body) !important;
 	line-height: var(--line-height-body) !important;
 }
-main .value-item h3 { font-size: var(--font-size-card-title) !important; line-height: 1.35 !important; }
-main .greeting, main .eyebrow, main .card-eyebrow, main .profile-title,
-main .small-action, main .back-link, main .card-link,
-main .page-heading > p:first-child,
+
+main .value-item h3 {
+	font-size: var(--font-size-card-title) !important;
+	line-height: 1.35 !important;
+}
+
+main .greeting,
+main .eyebrow,
+main .card-eyebrow,
+main .profile-title,
+main .small-action,
+main .back-link,
+main .card-link,
+main .page-heading>p:first-child,
 main .action,
-main .contact-submit { font-size: var(--font-size-secondary) !important; }
+main .contact-submit {
+	font-size: var(--font-size-secondary) !important;
+}
+
 main .contact-form label,
 main .contact-form input,
-main .contact-form textarea { font-size: var(--font-size-body) !important; line-height: var(--line-height-body) !important; }
+main .contact-form textarea {
+	font-size: var(--font-size-body) !important;
+	line-height: var(--line-height-body) !important;
+}
+
 main .detail-card,
 main .profile-card,
 main .content-card,
 main .content-list li,
-main .empty-state { transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+main .empty-state {
+	transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
 main .detail-card:hover,
 main .profile-card:hover,
 main .content-card:hover,
@@ -124,26 +220,106 @@ main .content-list li:hover,
 main .empty-state:hover,
 main .detail-card:focus-within,
 main .profile-card:focus-within,
-main .content-card:focus-within { transform: translateY(-2px); border-color: var(--color-primary); box-shadow: var(--shadow-card-hover), var(--shadow-card); }
+main .content-card:focus-within {
+	transform: translateY(-2px);
+	border-color: var(--color-primary);
+	box-shadow: var(--shadow-card-hover), var(--shadow-card);
+}
 
 @media (prefers-reduced-motion: reduce) {
-	*, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		animation-duration: .01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: .01ms !important;
+	}
 }
 
 @media (max-width: 650px) {
-	:root { --main-content-zoom: 1.02; }
-	main { --font-size-body: 15px; --font-size-page-title: 32px; --font-size-section: 21px; --font-size-card-title: 17px; }
-	main .welcome-card h1 { font-size: 32px !important; }
+	:root {
+		--main-content-zoom: 1;
+	}
+
+	main {
+		--font-size-body: 15px;
+		--font-size-page-title: 26px;
+		--font-size-section: 19px;
+		--font-size-card-title: 17px;
+	}
+
+	main .welcome-card h1 {
+		font-size: 32px !important;
+	}
+
 	main .facts-grid dt,
 	main .profile-facts li,
 	main .profile-quote cite,
-	main .value-item p { font-size: var(--font-size-small) !important; }
+	main .value-item p {
+		font-size: var(--font-size-small) !important;
+	}
+}
+
+/* Compact page layouts preserve readable body text and full content. */
+main .education-page p,
+main .education-page li,
+main .education-page dt,
+main .education-page dd {
+	font-size: 14px !important;
+	line-height: 1.45 !important;
+}
+
+main .education-page .record-level,
+main .education-page .subjects-label,
+main .education-page .subject-chips li,
+main .education-page .highlight-tile dt,
+main .education-page .heading-thought p {
+	font-size: 12px !important;
+}
+
+main .education-page h2 { font-size: 17px !important; }
+main .education-page h3 { font-size: 16px !important; }
+main .resume-toolbar h1 { font-size: 18px !important; }
+main .about-page { --font-size-body: 13px; --font-size-secondary: 13px; --font-size-card-title: 15px; --font-size-section: 15px; --font-size-page-title: 25px; --line-height-body: 1.55; }
+main .about-page .facts-grid dt,
+main .about-page .professional-details dt { font-size: 12px !important; }
+main .about-page .value-item h3 { font-size: 12px !important; }
+main .about-page .value-item p,
+main .about-page .interest-chip { font-size: 12px !important; }
+main .about-page .profile-intro h2 { font-size: 22px !important; }
+main .about-page .profile-facts li,
+main .about-page .profile-quote p { font-size: 12px !important; }
+
+@media (min-width: 1050px) {
+	main .career-records { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+	main .career-records > :only-child { grid-column: 1 / -1; }
+	main .overview-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	main .overview-bottom { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+	main .welcome-card { min-height: 290px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
 	main .detail-card,
 	main .profile-card,
 	main .content-card,
 	main .content-list li,
-	main .empty-state { transition: none; }
+	main .empty-state {
+		transition: none;
+	}
+}
+
+/* Shared portrait treatment for Home and About Me. Crop comes from assets.data.ts. */
+.profile-portrait-frame {
+  flex-shrink: 0;
+  border: 5px solid var(--color-surface);
+  border-radius: 50%;
+  background: var(--color-primary-soft);
+  outline: 1px solid color-mix(in srgb, var(--color-primary) 35%, var(--color-border));
+  box-shadow: 0 0 0 5px var(--color-primary-soft), 0 8px 24px rgb(23 105 224 / 12%);
+}
+.profile-portrait-frame img {
+  display: block;
 }

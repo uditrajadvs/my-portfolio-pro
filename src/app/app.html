@@ -1,4 +1,4 @@
-<app-layout [class.theme-dark]="darkMode()" [darkMode]="darkMode()" (themeToggle)="setTheme($event)">
+<app-layout [class.intro-pending]="showIntro()" [class.intro-revealed]="revealHome()" [attr.inert]="showIntro() ? '' : null" [class.theme-dark]="darkMode()" [darkMode]="darkMode()" (themeToggle)="setTheme($event)">
 </app-layout>
 
 @if (showIntro()) {

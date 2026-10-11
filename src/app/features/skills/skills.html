@@ -1,0 +1,43 @@
+<section class="skills-page" aria-labelledby="skills-title">
+  <header class="skills-heading">
+    <div><p class="skills-eyebrow">MY ENGINEERING TOOLKIT</p><h1 id="skills-title">Built for the backend.</h1><p>Explore the languages, tools and engineering practices behind my work.</p></div>
+    <div class="skills-stat"><strong>{{ total }}</strong><span>skills across {{ categories.length }} categories</span></div>
+  </header>
+  <section class="skills-focus" aria-label="Primary backend focus">
+    <div><span class="focus-symbol" aria-hidden="true">&lt;/&gt;</span><div><h2>Java backend development</h2><p>My primary focus</p></div></div>
+    <div class="focus-chips">@for (skill of focus; track skill) { <button type="button" (click)="category.set('All'); query.set(skill)">{{ skill }} <span aria-hidden="true">↗</span></button> }</div>
+  </section>
+  <div class="skills-controls">
+    <label class="skill-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><span class="sr-only">Search skills</span><input type="search" placeholder="Search a skill or category…" [value]="query()" (input)="search($event)" /></label>
+    <button class="reset-filter" type="button" (click)="reset()" [disabled]="!query() && category() === 'All'">Reset filters</button>
+  </div>
+  <div class="category-filters" role="group" aria-label="Filter by category">
+    <button type="button" [attr.aria-pressed]="category() === 'All'" (click)="category.set('All')">All skills</button>
+    @for (group of categories; track group.title) { <button type="button" [attr.aria-pressed]="category() === group.title" (click)="category.set(group.title)">{{ group.title }}</button> }
+  </div>
+  <p class="skills-results" role="status" aria-live="polite">Showing {{ count() }} of {{ total }} skills</p>
+  <div class="skills-grid">
+    @for (group of filtered(); track group.title) {
+      <article class="skill-category">
+        <header><span class="category-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="categoryIcons[group.title]"/></svg></span><h2>{{ group.title }}</h2><span class="category-count">{{ group.skills.length }}</span></header>
+        <ul>@for (skill of group.skills; track skill) {
+          <li [class.core-skill]="focus.includes(skill)">
+            <span class="skill-icon" aria-hidden="true">
+              @if (icons[skill]) { <img [src]="'/icons/skills/' + icons[skill] + '.svg'" alt="" width="34" height="34" loading="lazy" /> }
+              @else { <svg viewBox="0 0 24 24"><path [attr.d]="symbolIcons[skill] || categoryIcons[group.title]"/></svg> }
+            </span>
+            <span>{{ skill }}</span>
+          </li>
+        }</ul>
+      </article>
+    } @empty {
+      <div class="skills-empty"><h2>No matching skills</h2><p>Try another term or reset the filters to explore the full toolkit.</p><button type="button" (click)="reset()">Show all skills</button></div>
+    }
+  </div>
+  <section class="core-strengths" aria-labelledby="core-strengths-title">
+    <span class="strengths-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
+    <div><h2 id="core-strengths-title">Core Strengths</h2><p>Reliable backend engineering, thoughtful problem solving and collaborative delivery.</p></div>
+    <ul>@for (strength of strengths; track strength) { <li><span aria-hidden="true">✓</span>{{ strength }}</li> }</ul>
+  </section>
+  <footer class="skills-footer"><span>See how I apply these skills in real projects.</span><a routerLink="/experience">Experience →</a><a routerLink="/projects">Projects →</a></footer>
+</section>

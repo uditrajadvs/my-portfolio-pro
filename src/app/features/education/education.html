@@ -1,0 +1,63 @@
+<section class="education-page" aria-labelledby="page-title">
+  <header class="education-heading">
+    <span class="heading-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5-10-5Zm4 2v6c4 3 8 3 12 0v-6M22 9v7"/></svg></span>
+    <div><h1 id="page-title">Education</h1><p>My academic journey, qualifications and the foundations of my engineering career.</p></div>
+    <div class="education-heading-art">
+      <img src="/images/education-books.svg" width="132" height="96" alt="" aria-hidden="true" />
+      <blockquote class="heading-thought"><p>“{{ headingThought }}”</p></blockquote>
+    </div>
+  </header>
+  <div class="education-layout">
+    <div class="education-main">
+      <section class="education-panel" aria-labelledby="timeline-title">
+        <h2 id="timeline-title">Education timeline</h2>
+        <ol class="education-timeline">
+          @for (record of records; track record.id) {
+            <li><article class="education-record">
+              <header class="record-heading">
+                <div><p class="record-level">{{ record.level }}</p><h3>{{ record.qualification }}</h3></div>
+                <span class="completed">Completed</span>
+              </header>
+              <p class="institution">{{ record.institution }}</p>
+              @if (record.board) { <p class="board">{{ record.board }}</p> }
+              <div class="record-meta"><span>{{ record.period }}</span><strong>{{ record.result }}</strong></div>
+              @if (record.id !== 'graduation') {
+                <p class="subjects-label">Subjects</p>
+                <ul class="subject-chips" aria-label="Subjects studied">
+                  @for (subject of record.subjects; track subject) { <li>{{ subject }}</li> }
+                </ul>
+              }
+            </article></li>
+          }
+        </ol>
+      </section>
+      <section class="education-panel" aria-labelledby="coursework-title">
+        <h2 id="coursework-title">Relevant coursework</h2>
+        <ul class="subject-chips coursework">
+          @for (subject of coursework; track subject) { <li>{{ subject }}</li> }
+        </ul>
+      </section>
+    </div>
+    <aside class="education-sidebar" aria-label="Academic highlights">
+      <section class="education-panel" aria-labelledby="highlights-title">
+        <h2 id="highlights-title">Education highlights</h2>
+        <dl class="highlight-grid">
+          @for (highlight of highlights; track highlight.label) {
+            <div [class]="'highlight-tile ' + highlight.tone"><dt>{{ highlight.label }}</dt><dd>{{ highlight.value }}</dd></div>
+          }
+        </dl>
+      </section>
+      <section class="education-panel" aria-labelledby="learning-title">
+        <h2 id="learning-title">Academic foundations</h2>
+        <p class="learning-intro">Core areas covered in my undergraduate coursework.</p>
+        <ul class="learning-list">
+          @for (subject of coursework; track subject) { <li><span aria-hidden="true">✓</span>{{ subject }}</li> }
+        </ul>
+      </section>
+      <figure class="education-panel thought-panel">
+        <span class="quote-icon" aria-hidden="true">“</span>
+        <blockquote class="education-thought"><p>{{ thought }}</p><cite>— {{ name }}</cite></blockquote>
+      </figure>
+    </aside>
+  </div>
+</section>

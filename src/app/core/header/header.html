@@ -2,7 +2,7 @@
   <div class="header-inner">
     <a class="brand" routerLink="/overview" aria-label="Udit — overview" (click)="closeMenu()">
       <img class="brand-mark" src="/icons/ur-monogram.svg" alt="" aria-hidden="true" />
-      <span>{{ profile.name }}</span>
+      <span class="brand-identity"><strong>{{ profile.name }}</strong><small>{{ profile.role }}</small></span>
     </a>
 
     <button
@@ -20,7 +20,7 @@
       @for (item of navigation; track item.href) {
         <a [routerLink]="item.href" routerLinkActive="current" [routerLinkActiveOptions]="{ exact: true }" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ item.label }}</a>
       }
-      <a class="nav-resume" [href]="profile.resumeHref" download (click)="closeMenu()">Resume <span aria-hidden="true">↗</span></a>
+      <div class="header-actions">
       <div class="theme-switcher" role="group" aria-label="Color theme">
         <button
           class="theme-option"
@@ -42,6 +42,11 @@
         >
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.9 13A8.5 8.5 0 0 1 11 3.1 8.5 8.5 0 1 0 20.9 13Z"/></svg>
         </button>
+      </div>
+      <a class="resume-action" [href]="profile.resumeHref" target="_blank" rel="noopener noreferrer" (click)="closeMenu()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v5h14v-5"/></svg>
+        Download Resume
+      </a>
       </div>
     </nav>
   </div>
