@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { profileData } from '../../data/profile.data';
+import { previewSkills } from '../../data/skills.data';
 import { backendStrengths, overviewCards, professionalWork } from '../../data/overview.data';
 
 @Component({
@@ -14,5 +15,5 @@ export class Home {
   protected readonly cards = overviewCards;
   protected readonly strengths = backendStrengths;
   protected readonly work = professionalWork;
-  protected readonly previewSkills = ['Java', 'Spring Boot', 'REST APIs', 'Microservices'];
+  protected readonly previewSkills = previewSkills;
 }

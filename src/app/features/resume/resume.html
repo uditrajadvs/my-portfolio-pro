@@ -3,16 +3,16 @@
     <header class="resume-toolbar">
       <h1 id="resume-title">My Resume</h1>
       <div class="resume-actions">
-        <a class="resume-open" href="https://drive.google.com/file/d/1mDMbSgoB4wwszeKrgRfO75nsk08fl-8g/view"
+        <a class="resume-open" [href]="document.viewHref"
           target="_blank" rel="noopener noreferrer">Open in new tab</a>
-        <a class="resume-download" [href]="downloadHref" target="_blank" rel="noopener noreferrer">
+        <a class="resume-download" [href]="document.downloadHref" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v5h14v-5"/></svg>
           Download Resume
         </a>
       </div>
     </header>
     <iframe class="resume-preview"
-      src="https://drive.google.com/file/d/1mDMbSgoB4wwszeKrgRfO75nsk08fl-8g/preview"
+      [src]="previewUrl"
       title="Udit Raj original resume preview" allow="fullscreen"></iframe>
   </div>
 </section>

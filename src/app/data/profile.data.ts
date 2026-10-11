@@ -1,3 +1,14 @@
+import { contactData, socialLinks } from './common/contact.data';
+import { documentsData } from './common/documents.data';
+import { experienceData } from './experience.data';
+
+const identity = {
+  name: 'Udit Raj',
+  title: experienceData[0].title,
+  employer: experienceData[0].organization,
+  experienceLabel: '3+ years',
+};
+
 export interface PortfolioProfile {
 	name: string;
 	title: string;
@@ -23,20 +34,20 @@ export interface PortfolioProfile {
 }
 
 export const profileData: PortfolioProfile = {
-	name: 'Udit Raj',
-	title: 'Software Engineer',
+	name: identity.name,
+	title: identity.title,
 	role: 'Software Engineer · Java Backend Developer',
-	employer: 'CGI',
+	employer: identity.employer,
 	focus: 'JAVA BACKEND DEVELOPER · ENTERPRISE APPLICATIONS',
-	experienceLabel: '3+ years',
+	experienceLabel: identity.experienceLabel,
 	summary:
 		'Software Engineer with 3+ years of experience building and supporting enterprise backend applications and responsive client experiences. Focused on Java, Spring Boot, REST APIs, microservices, SQL, and enterprise integration across wealth-management and freelance projects.',
-	resumeHref: 'https://drive.google.com/uc?export=download&id=1mDMbSgoB4wwszeKrgRfO75nsk08fl-8g',
-	phone: '7061609300',
+	resumeHref: documentsData.resume.downloadHref,
+	phone: contactData.phone,
 	heroTechnologies: ['Java', 'Spring Boot', 'REST APIs', 'Apache Camel'],
 	quickFacts: [
-		{ label: 'Experience', value: '3+ years', symbol: '◷' },
-		{ label: 'Role', value: 'Software Engineer', symbol: '</>' },
+		{ label: 'Experience', value: identity.experienceLabel, symbol: '◷' },
+		{ label: 'Role', value: identity.title, symbol: '</>' },
 		{ label: 'Domain', value: 'Wealth management', symbol: '↗' },
 		{ label: 'Focus', value: 'Backend systems', symbol: '⌘' },
 	],
@@ -53,16 +64,12 @@ export const profileData: PortfolioProfile = {
 		{ title: 'Team collaboration', description: 'Work across teams from requirements through support.', symbol: '◎' },
 	],
 	thought: 'I believe in learning, growing and creating meaningful user experiences that make a difference.',
-	thoughtAttribution: 'Udit Raj',
+	thoughtAttribution: identity.name,
 	professionalInterests: [
 		{ label: 'Backend engineering', symbol: '⌘' },
 		{ label: 'REST APIs and microservices', symbol: '↗' },
 		{ label: 'Enterprise integration', symbol: '⇄' },
 		{ label: 'Financial services technology', symbol: '◇' },
 	],
-	socialLinks: {
-		linkedin: 'https://www.linkedin.com/in/raj-udit',
-		github: 'https://github.com/uditrajadvs',
-		email: 'mailto:uditraj.se@gmail.com',
-	},
+	socialLinks,
 };

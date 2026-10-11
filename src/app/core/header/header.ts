@@ -1,6 +1,7 @@
 import { Component, input, output, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { profileData } from '../../data/profile.data';
+import { navigationData } from '../../data/common/navigation.data';
 
 @Component({
   selector: 'app-header',
@@ -13,18 +14,7 @@ export class Header {
   readonly darkMode = input(false);
   readonly themeToggle = output<boolean>();
   protected readonly menuOpen = signal(false);
-  protected readonly navigation = [
-    { label: 'Overview', href: '/overview' },
-    { label: 'About Me', href: '/about' },
-    { label: 'Education', href: '/education' },
-    { label: 'Experience', href: '/experience' },
-    { label: 'Skills', href: '/skills' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Achievements', href: '/achievements' },
-    { label: 'Certifications', href: '/certifications' },
-    { label: 'Resume', href: '/resume' },
-    { label: 'Contact', href: '/contact' },
-  ];
+  protected readonly navigation = navigationData;
 
   protected closeMenu(): void {
     this.menuOpen.set(false);

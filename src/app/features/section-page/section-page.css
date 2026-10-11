@@ -2,6 +2,10 @@
     display: block
 }
 
+.document-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.document-actions a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-control); color: var(--color-primary); background: var(--color-primary-soft); font-size: 13px; font-weight: 600; text-decoration: none; }
+.document-actions a:hover { border-color: var(--color-primary); }
+
 .dashboard-wrap {
     width: min(var(--content-max), calc(100% - var(--space-8)));
     margin-inline: auto

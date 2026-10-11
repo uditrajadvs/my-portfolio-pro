@@ -29,6 +29,12 @@
       </header>
       @if (record.location) { <p class="career-location">{{ record.location }}</p> }
       <p class="career-description">{{ record.description }}</p>
+      @if (record.document) {
+      <div class="document-actions">
+        <a [href]="record.document.viewHref" target="_blank" rel="noopener noreferrer">View certificate</a>
+        <a [href]="record.document.downloadHref" target="_blank" rel="noopener noreferrer">Download certificate</a>
+      </div>
+      }
       @if (record.highlights.length) {
       <ul>
         @for (highlight of record.highlights; track highlight) { <li>{{ highlight }}</li> }
@@ -44,7 +50,7 @@
   </div>
   } @else if (content().contact) {
   <div class="contact-layout">
-    <form method="POST" class="kf-form contact-form" action="https://kwesforms.com/api/f/rHLhEpyDurp3vFt3Galy"
+    <form method="POST" class="kf-form contact-form" [action]="contactFormAction"
       aria-labelledby="contact-form-title">
       <h2 id="contact-form-title">Send a message</h2>
       <p class="contact-form-intro">Use this form to email me directly. I will get back to you as soon as I can.</p>

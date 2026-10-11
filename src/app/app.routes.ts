@@ -2,15 +2,16 @@ import { Routes } from '@angular/router';
 import { About } from './features/about/about';
 import { Home } from './features/home/home';
 import { Resume } from './features/resume/resume';
+import { Education } from './features/education/education';
 import { SectionPage, SectionPageContent } from './features/section-page/section-page';
 import {
   achievementData,
   certificationData,
-  educationData,
   experienceData,
   projectData,
 } from './data/career.data';
-import { profileData } from './data/profile.data';
+import { contactData } from './data/common/contact.data';
+import { skillsData } from './data/skills.data';
 
 const section = (content: SectionPageContent) => ({ component: SectionPage, data: { content } });
 
@@ -39,16 +40,7 @@ export const routes: Routes = [
       title: 'Technical skills',
       eyebrow: 'BACKEND TOOLKIT',
       summary: 'Technologies and engineering practices from the supplied professional profile.',
-      groups: [
-        { title: 'Programming', skills: ['Java', 'C++', 'JavaScript'] },
-        { title: 'Backend', skills: ['Spring Boot', 'Spring Framework', 'REST APIs', 'Microservices', 'MyBatis'] },
-        { title: 'Integration and messaging', skills: ['Apache Camel', 'ActiveMQ', 'Apache Kafka'] },
-        { title: 'Databases', skills: ['Oracle SQL', 'MySQL'] },
-        { title: 'Testing and quality', skills: ['JUnit', 'SonarLint'] },
-        { title: 'Build and DevOps', skills: ['Maven', 'Jenkins', 'Git', 'GitHub', 'Bitbucket'] },
-        { title: 'Tools and platforms', skills: ['Postman', 'Swagger/OpenAPI', 'Linux', 'Tomcat', 'AWS', 'IntelliJ IDEA', 'Confluence'] },
-        { title: 'Engineering concepts', skills: ['OOP', 'JVM', 'SDLC', 'Data Structures and Algorithms', 'System Design'] },
-      ],
+      groups: skillsData,
     }),
     title: 'Skills | Udit Raj',
   },
@@ -64,12 +56,7 @@ export const routes: Routes = [
   },
   {
     path: 'education',
-    ...section({
-      title: 'Education',
-      eyebrow: 'ACADEMIC BACKGROUND',
-      summary: 'Bachelor of Technology in Electronics and Communication Engineering.',
-      records: educationData,
-    }),
+    component: Education,
     title: 'Education | Udit Raj',
   },
   {
@@ -98,12 +85,7 @@ export const routes: Routes = [
       title: 'Contact',
       eyebrow: 'GET IN TOUCH',
       summary: 'Send a message with the form below, or reach out by email, phone, or a professional profile.',
-      contact: {
-        email: 'uditraj.se@gmail.com',
-        phone: profileData.phone,
-        linkedin: profileData.socialLinks.linkedin,
-        github: profileData.socialLinks.github,
-      },
+      contact: contactData,
     }),
     title: 'Contact | Udit Raj',
   },

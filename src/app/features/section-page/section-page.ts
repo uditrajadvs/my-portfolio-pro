@@ -1,6 +1,7 @@
 import { afterNextRender, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import type { CareerRecord } from '../../data/career.data';
+import type { CareerRecord } from '../../data/common/career-record.model';
+import { contactFormAction } from '../../data/common/contact.data';
 
 interface KwesFormsApi {
   init?: () => void;
@@ -23,6 +24,7 @@ export interface SectionPageContent {
   styleUrl: './section-page.css',
 })
 export class SectionPage {
+  protected readonly contactFormAction = contactFormAction;
   readonly content = input.required<SectionPageContent>();
 
   constructor() {

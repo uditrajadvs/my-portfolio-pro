@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router, withComponentInputBinding } from '@angular/router';
 import { App } from './app';
 import { routes } from './app.routes';
+import { documentsData } from './data/common/documents.data';
 
 describe('App', () => {
   beforeEach(async () => {
@@ -35,7 +36,7 @@ describe('App', () => {
     expect(compiled.querySelector('.header-socials, .hero-socials')).toBeNull();
     expect(compiled.querySelector('.footer-socials a[aria-label="LinkedIn profile"]')?.getAttribute('href')).toBe('https://www.linkedin.com/in/raj-udit');
     expect(compiled.querySelector('.footer-socials a[aria-label="GitHub profile"]')?.getAttribute('href')).toBe('https://github.com/uditrajadvs');
-    expect(compiled.querySelector('.footer-socials a[aria-label="Gmail Udit Raj"]')?.getAttribute('href')).toBe('mailto:uditraj@gmail.com');
+    expect(compiled.querySelector('.footer-socials a[aria-label="Gmail Udit Raj"]')?.getAttribute('href')).toBe('mailto:uditraj.se@gmail.com');
   });
 
   it('should toggle the page theme from the header control', async () => {
@@ -89,6 +90,10 @@ describe('App', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('#page-title')?.textContent).toContain('Education');
+    expect(compiled.querySelectorAll('.education-record').length).toBe(3);
+    expect(compiled.querySelector('.education-timeline')?.textContent).toContain('73.2%');
+    expect(compiled.querySelector('.education-timeline')?.textContent).toContain('8.2/10 CGPA');
+    expect(compiled.querySelector('.coursework')?.textContent).toContain('Computer Networks');
     expect(compiled.querySelector('.site-header')).toBeTruthy();
 
     await router.navigateByUrl('/projects');
@@ -108,5 +113,25 @@ describe('App', () => {
     expect(compiled.querySelector('.about-photo')?.getAttribute('src')).toContain('ud-photo.jpeg');
     expect(compiled.querySelector('#summary-title')?.textContent).toContain('Professional summary');
     expect(compiled.querySelector('.profile-quote')?.textContent).toContain('I believe in learning');
+  });
+
+  it('should use the shared original documents for resume and certificate actions', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/resume');
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.resume-preview')?.getAttribute('src')).toBe(documentsData.resume.previewHref);
+    expect(compiled.querySelector('.resume-download')?.getAttribute('href')).toBe(documentsData.resume.downloadHref);
+    expect(compiled.querySelector('.resume-open')?.getAttribute('href')).toBe(documentsData.resume.viewHref);
+    expect(compiled.textContent).not.toContain('PROFESSIONAL PROFILE');
+
+    await router.navigateByUrl('/certifications');
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const certificateLinks = compiled.querySelectorAll('.document-actions a');
+    expect(certificateLinks[0]?.getAttribute('href')).toBe(documentsData.javaCertification.viewHref);
+    expect(certificateLinks[1]?.getAttribute('href')).toBe(documentsData.javaCertification.downloadHref);
   });
 });
