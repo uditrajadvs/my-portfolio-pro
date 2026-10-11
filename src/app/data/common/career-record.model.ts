@@ -6,5 +6,7 @@ export interface CareerRecord {
   description: string;
   highlights: string[];
   technologies?: string[];
+  featured?: boolean;
+  knowledgeAreas?: { title: string; description: string }[];
   document?: { viewHref: string; downloadHref: string };
 }

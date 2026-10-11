@@ -31,26 +31,26 @@
 	--shadow-header: 0 1px 8px rgb(16 42 67 / 4%);
 	--shadow-welcome-glow: 0 14px 38px rgb(59 130 246 / 15%);
 	--shadow-card-hover: 0 12px 30px rgb(59 130 246 / 18%);
-	--content-max: 1200px;
+	--content-max: 1320px;
 	--header-height: 70px;
-	--main-content-zoom: 1.04;
+	--main-content-zoom: 1;
 	--space-1: 4px;
 	--space-2: 8px;
 	--space-3: 12px;
 	--space-4: 16px;
-	--space-5: 24px;
-	--space-6: 32px;
-	--space-7: 40px;
-	--space-8: 48px;
+	--space-5: 20px;
+	--space-6: 24px;
+	--space-7: 28px;
+	--space-8: 32px;
 	--font-body: system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--font-display: system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--font-size-body: 16px;
 	--font-size-small: 14px;
 	--font-size-secondary: 15px;
 	--font-size-card-title: 18px;
-	--font-size-section: 22px;
-	--font-size-page-title: 36px;
-	--line-height-body: 1.6;
+	--font-size-section: 20px;
+	--font-size-page-title: 30px;
+	--line-height-body: 1.5;
 }
 
 .theme-dark {
@@ -240,13 +240,13 @@ main .content-card:focus-within {
 
 @media (max-width: 650px) {
 	:root {
-		--main-content-zoom: 1.02;
+		--main-content-zoom: 1;
 	}
 
 	main {
 		--font-size-body: 15px;
-		--font-size-page-title: 32px;
-		--font-size-section: 21px;
+		--font-size-page-title: 26px;
+		--font-size-section: 19px;
 		--font-size-card-title: 17px;
 	}
 
@@ -260,6 +260,44 @@ main .content-card:focus-within {
 	main .value-item p {
 		font-size: var(--font-size-small) !important;
 	}
+}
+
+/* Compact page layouts preserve readable body text and full content. */
+main .education-page p,
+main .education-page li,
+main .education-page dt,
+main .education-page dd {
+	font-size: 14px !important;
+	line-height: 1.45 !important;
+}
+
+main .education-page .record-level,
+main .education-page .subjects-label,
+main .education-page .subject-chips li,
+main .education-page .highlight-tile dt,
+main .education-page .heading-thought p {
+	font-size: 12px !important;
+}
+
+main .education-page h2 { font-size: 17px !important; }
+main .education-page h3 { font-size: 16px !important; }
+main .resume-toolbar h1 { font-size: 18px !important; }
+main .about-page { --font-size-body: 13px; --font-size-secondary: 13px; --font-size-card-title: 15px; --font-size-section: 15px; --font-size-page-title: 25px; --line-height-body: 1.55; }
+main .about-page .facts-grid dt,
+main .about-page .professional-details dt { font-size: 12px !important; }
+main .about-page .value-item h3 { font-size: 12px !important; }
+main .about-page .value-item p,
+main .about-page .interest-chip { font-size: 12px !important; }
+main .about-page .profile-intro h2 { font-size: 22px !important; }
+main .about-page .profile-facts li,
+main .about-page .profile-quote p { font-size: 12px !important; }
+
+@media (min-width: 1050px) {
+	main .career-records { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+	main .career-records > :only-child { grid-column: 1 / -1; }
+	main .overview-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	main .overview-bottom { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+	main .welcome-card { min-height: 290px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -94,6 +94,12 @@ describe('App', () => {
     expect(compiled.querySelector('.education-timeline')?.textContent).toContain('73.2%');
     expect(compiled.querySelector('.education-timeline')?.textContent).toContain('8.2/10 CGPA');
     expect(compiled.querySelector('.coursework')?.textContent).toContain('Computer Networks');
+    const topThought = compiled.querySelector('.heading-thought p')?.textContent?.trim();
+    const bottomThought = compiled.querySelector('.education-thought p')?.textContent?.trim();
+    expect(topThought).toContain('Education is not just about degrees');
+    expect(compiled.querySelector('.heading-thought cite')).toBeNull();
+    expect(bottomThought).toContain('Education gave me the knowledge');
+    expect(compiled.querySelector('.education-heading-art img')?.getAttribute('src')).toBe('/images/education-books.svg');
     expect(compiled.querySelector('.site-header')).toBeTruthy();
 
     await router.navigateByUrl('/projects');
@@ -112,7 +118,16 @@ describe('App', () => {
     expect(compiled.querySelector('#about-title')?.textContent).toContain('About Me');
     expect(compiled.querySelector('.about-photo')?.getAttribute('src')).toContain('ud-photo.jpeg');
     expect(compiled.querySelector('#summary-title')?.textContent).toContain('Professional summary');
+    expect(compiled.querySelector('.profile-title')?.textContent).toBe('Java Backend Developer');
+    expect(compiled.querySelector('.profile-facts')?.textContent).toContain('Software Engineer');
+    expect(compiled.querySelector('.cgi-focus-card, .backend-knowledge-card')).toBeNull();
+    expect(compiled.querySelector('#personal-details-title')?.textContent).toContain('Professional details');
+    expect(compiled.querySelector('.about-photo')?.getAttribute('height')).toBe('1124');
     expect(compiled.querySelector('.profile-quote')?.textContent).toContain('I believe in learning');
+    await router.navigateByUrl('/projects');
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(compiled.querySelector('.project-knowledge')?.textContent).toContain('MyBatis');
   });
 
   it('should use the shared original documents for resume and certificate actions', async () => {

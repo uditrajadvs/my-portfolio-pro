@@ -19,7 +19,7 @@ export const overviewCards: OverviewCard[] = [
     title: 'About me',
     eyebrow: 'PROFILE',
     summary: `${profileData.title} with ${profileData.experienceLabel} across enterprise backend engineering and freelance client delivery.`,
-    detail: 'Java · financial services · responsive web',
+    detail: `${profileData.role} | ${profileData.employer} | Wealth management`,
     icon: '◎',
   },
   {

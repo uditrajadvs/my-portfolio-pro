@@ -13,10 +13,10 @@
       </div>
       <img
         class="welcome-photo"
-        src="/images/myProfilePhoto/ud-photo.jpeg"
-        alt="Portrait of Udit Raj"
-        width="796"
-        height="1188"
+        [src]="profile.photo.src"
+        [alt]="'Portrait of ' + profile.name"
+        [attr.width]="profile.photo.width"
+        [attr.height]="profile.photo.height"
         fetchpriority="high"
       />
     </article>

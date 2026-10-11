@@ -1,18 +1,21 @@
 import type { CareerRecord } from './common/career-record.model';
 import { experienceData } from './experience.data';
+import { wealth360Data } from './wealth360.data';
 
 export const projectData: CareerRecord[] = [
   {
-    title: 'Wealth360 — wealth-management platform',
+    title: `${wealth360Data.name} — wealth-management platform`,
+    featured: true,
     organization: experienceData[0].organization,
     period: 'Professional experience',
-    description: 'Public-safe overview of backend contributions to a multi-tenant platform for wealth-management workflows. Client institutions and confidential implementation details are intentionally excluded.',
+    description: wealth360Data.summary,
+    knowledgeAreas: wealth360Data.knowledgeAreas,
     highlights: [
       'Implemented enhancements around management-fee and portfolio-processing capabilities.',
       'Contributed across API, integration, and Oracle data-access layers.',
       'Improved query execution time by up to 70% through SQL and mapper optimization.',
     ],
-    technologies: ['Spring Boot', 'Apache Camel', 'MyBatis', 'Oracle SQL', 'ActiveMQ'],
+    technologies: wealth360Data.technologies,
   },
   {
     title: 'Ride Sharing Application',
@@ -29,11 +32,10 @@ export const projectData: CareerRecord[] = [
     title: 'Shopify e-commerce and freelance client work',
     organization: 'Freelance',
     period: experienceData[1].period,
-    description: 'Responsive frontend and backend maintenance work for freelance projects, including a Shopify e-commerce engagement.',
+    description: 'Java/MySQL backend stabilization and application maintenance for freelance client projects, including a Shopify e-commerce engagement.',
     highlights: [
-      'Enhanced responsive pages and navigation across desktop and mobile layouts.',
       'Stabilized Java/MySQL modules and resolved reported frontend and backend issues.',
     ],
-    technologies: ['Shopify', 'Angular', 'JavaScript', 'Java', 'MySQL'],
+    technologies: ['Java', 'MySQL', 'Shopify'],
   },
 ];

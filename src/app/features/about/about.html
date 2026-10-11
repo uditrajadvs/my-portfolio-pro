@@ -1,6 +1,6 @@
 <section class="about-page dashboard-wrap" aria-labelledby="about-title">
   <header class="about-heading">
-    <span class="heading-icon" aria-hidden="true">◎</span>
+    <span class="heading-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21v-3a8 8 0 0 1 16 0v3H4Z"/></svg></span>
     <div>
       <h1 id="about-title">About Me</h1>
       <p>Get to know my background, what drives me and my professional journey so far.</p>
@@ -10,26 +10,36 @@
   <div class="about-layout">
     <div class="about-left-column">
       <article class="profile-card">
-        <img
+        <div class="portrait-frame"><img
           class="about-photo"
-          src="/images/myProfilePhoto/ud-photo.jpeg"
-          alt="Udit Raj"
-          width="796"
-          height="1188"
-        />
+          [src]="profile.photo.src"
+          [alt]="profile.name"
+          [attr.width]="profile.photo.width"
+          [attr.height]="profile.photo.height"
+          fetchpriority="high"
+          decoding="async"
+          [style.width]="profile.photo.portrait.width"
+          [style.left]="profile.photo.portrait.left"
+          [style.top]="profile.photo.portrait.top"
+        /></div>
         <div class="profile-intro">
           <h2>{{ profile.name }}</h2>
-          <p class="profile-title">{{ profile.title }}</p>
+          <p class="profile-title">{{ profile.role }}</p>
           <ul class="profile-facts" aria-label="Professional contact and role information">
-            <li><span aria-hidden="true">▣</span>{{ profile.employer }}</li>
-            <li><span aria-hidden="true">⌁</span>{{ profile.experienceLabel }} of experience</li>
-            <li><span aria-hidden="true">⌘</span>{{ profile.role }}</li>
+            <li><span aria-hidden="true">⌘</span>{{ profile.title }}</li>
+            <li><span aria-hidden="true">@</span><a [href]="profile.socialLinks.email">{{ contact.email }}</a></li>
+            <li><span aria-hidden="true">☎</span><a [href]="'tel:' + contact.phone">{{ contact.phone }}</a></li>
           </ul>
-          <div class="profile-actions">
-            <a class="small-action" [href]="profile.resumeHref" download>Download resume <span aria-hidden="true">↓</span></a>
-            <a class="small-action small-action-primary" routerLink="/contact">Contact <span aria-hidden="true">↗</span></a>
-          </div>
         </div>
+        <nav class="about-socials" aria-label="Professional profiles and contact">
+          <a [href]="profile.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn"><span aria-hidden="true">in</span></a>
+          <a [href]="profile.socialLinks.github" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1-5-2-7-2m14 5v-4a3.5 3.5 0 0 0-1-2.7c3.3-.4 6.7-1.6 6.7-7.3a5.7 5.7 0 0 0-1.6-4 5.3 5.3 0 0 0-.1-4s-1.3-.4-4.2 1.5a14.5 14.5 0 0 0-7.6 0C5.3-.4 4 0 4 0a5.3 5.3 0 0 0-.1 4 5.7 5.7 0 0 0-1.6 4c0 5.7 3.4 6.9 6.7 7.3A3.5 3.5 0 0 0 8 18v4"/></svg></a>
+          <a [href]="profile.resumeHref" target="_blank" rel="noopener noreferrer" aria-label="Download resume" title="Download resume"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6v18h12V7l-4-4Z M14 3v5h4M9 12h6M9 16h6"/></svg></a>
+          <a [href]="profile.socialLinks.email" aria-label="Email Udit Raj" title="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm0 2 9 6 9-6"/></svg></a>
+          @if (profile.availability.openToOpportunities) {
+            <span class="availability-badge"><span class="availability-dot" aria-hidden="true"></span>{{ profile.availability.label }}</span>
+          }
+        </nav>
         <blockquote class="profile-quote">
           <span aria-hidden="true">“</span>
           <div><p>{{ profile.thought }}</p><cite>— {{ profile.thoughtAttribution }}</cite></div>
@@ -40,14 +50,16 @@
         <h2 class="card-title" id="facts-title"><span aria-hidden="true">▧</span> Quick facts</h2>
         <dl class="facts-grid">
           <div><dt>Full name</dt><dd>{{ profile.name }}</dd></div>
-          <div><dt>Professional title</dt><dd>{{ profile.title }}</dd></div>
+          <div><dt>Designation</dt><dd>{{ profile.title }}</dd></div>
+          <div><dt>Role</dt><dd>{{ profile.role }}</dd></div>
           <div><dt>Experience</dt><dd>{{ profile.experienceLabel }}</dd></div>
           <div><dt>Employer</dt><dd>{{ profile.employer }}</dd></div>
-          <div><dt>Industry</dt><dd>Wealth management and financial services</dd></div>
-          <div><dt>Primary focus</dt><dd>Enterprise backend applications</dd></div>
+          <div><dt>Email</dt><dd><a [href]="profile.socialLinks.email">{{ contact.email }}</a></dd></div>
+          <div><dt>Phone</dt><dd><a [href]="'tel:' + contact.phone">{{ contact.phone }}</a></dd></div>
+          <div><dt>Languages</dt><dd>{{ profile.languages.join(', ') }}</dd></div>
         </dl>
       </section>
-    </div>
+</div>
 
     <div class="about-right-column">
       <section class="detail-card summary-card" aria-labelledby="summary-title">
@@ -63,17 +75,30 @@
             }
           </ul>
         </div>
+        <nav class="work-links" aria-label="Explore my work">
+          <a routerLink="/experience">Experience →</a>
+          <a routerLink="/projects">Projects →</a>
+        </nav>
       </section>
 
-      <section class="detail-card focus-card" aria-labelledby="interests-title">
+      <div class="about-detail-row">
+      <section class="detail-card" aria-labelledby="personal-details-title">
+        <h2 class="card-title" id="personal-details-title"><span aria-hidden="true">◎</span> Professional details</h2>
+        <dl class="professional-details">
+          <div><dt>Designation</dt><dd>{{ profile.title }}</dd></div>
+          <div><dt>Specialization</dt><dd>{{ profile.role }}</dd></div>
+          <div><dt>Domain</dt><dd>Financial services</dd></div>
+        </dl>
+      </section>
+<section class="detail-card focus-card" aria-labelledby="interests-title">
         <h2 class="card-title" id="interests-title"><span aria-hidden="true">♡</span> Professional interests</h2>
-        <p class="section-note">Areas aligned with my current work and technical background.</p>
         <div class="interest-list">
           @for (interest of profile.professionalInterests; track interest.label) {
             <span class="interest-chip"><span aria-hidden="true">{{ interest.symbol }}</span>{{ interest.label }}</span>
           }
         </div>
       </section>
+      </div>
 
       <section class="detail-card values-card" aria-labelledby="values-title">
         <h2 class="card-title" id="values-title"><span aria-hidden="true">☆</span> My values</h2>

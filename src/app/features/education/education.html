@@ -2,7 +2,10 @@
   <header class="education-heading">
     <span class="heading-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5-10-5Zm4 2v6c4 3 8 3 12 0v-6M22 9v7"/></svg></span>
     <div><h1 id="page-title">Education</h1><p>My academic journey, qualifications and the foundations of my engineering career.</p></div>
-    <div class="heading-note">From school science to electronics and communication engineering.</div>
+    <div class="education-heading-art">
+      <img src="/images/education-books.svg" width="132" height="96" alt="" aria-hidden="true" />
+      <blockquote class="heading-thought"><p>“{{ headingThought }}”</p></blockquote>
+    </div>
   </header>
   <div class="education-layout">
     <div class="education-main">
@@ -51,6 +54,10 @@
           @for (subject of coursework; track subject) { <li><span aria-hidden="true">✓</span>{{ subject }}</li> }
         </ul>
       </section>
+      <figure class="education-panel thought-panel">
+        <span class="quote-icon" aria-hidden="true">“</span>
+        <blockquote class="education-thought"><p>{{ thought }}</p><cite>— {{ name }}</cite></blockquote>
+      </figure>
     </aside>
   </div>
 </section>

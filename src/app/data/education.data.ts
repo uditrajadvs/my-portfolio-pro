@@ -40,3 +40,6 @@ export const educationHighlights = [
   { label: 'Graduation result', value: educationData[0].result, tone: 'purple' },
   { label: 'Field of study', value: educationData[0].field!, tone: 'orange' },
 ];
+
+export const educationThought = 'Education gave me the knowledge, but practical experience taught me how to apply it in the real world.';
+export const educationHeadingThought = 'Education is not just about degrees, it’s about building the right foundation for the future.';

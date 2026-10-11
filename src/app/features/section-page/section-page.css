@@ -5,6 +5,14 @@
 .document-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 .document-actions a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-control); color: var(--color-primary); background: var(--color-primary-soft); font-size: 13px; font-weight: 600; text-decoration: none; }
 .document-actions a:hover { border-color: var(--color-primary); }
+.project-knowledge { margin-top: 16px; }
+.project-knowledge h3, .project-knowledge h4 { margin: 0; color: var(--color-heading); }
+.project-knowledge-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+.project-knowledge-grid article { padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-surface); }
+.project-knowledge-grid p { margin: 6px 0 0; }
+@media (max-width: 650px) { .project-knowledge-grid { grid-template-columns: 1fr; } }
+.career-card.featured-career { grid-column: 1 / -1; border-left: 3px solid var(--color-primary); background: linear-gradient(120deg, var(--color-surface), var(--color-primary-soft)); }
+@media (min-width: 1050px) { .featured-career ul { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; } }
 
 .dashboard-wrap {
     width: min(var(--content-max), calc(100% - var(--space-8)));

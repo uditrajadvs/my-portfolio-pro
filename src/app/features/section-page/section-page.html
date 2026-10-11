@@ -19,7 +19,7 @@
   } @else if (content().records?.length) {
   <div class="career-records">
     @for (record of content().records; track record.title) {
-    <article class="career-card">
+    <article class="career-card" [class.featured-career]="record.featured">
       <header class="career-card-heading">
         <div>
           <h2>{{ record.title }}</h2>
@@ -29,6 +29,16 @@
       </header>
       @if (record.location) { <p class="career-location">{{ record.location }}</p> }
       <p class="career-description">{{ record.description }}</p>
+      @if (record.knowledgeAreas?.length) {
+      <section class="project-knowledge" aria-label="Platform architecture and knowledge">
+        <h3>Backend architecture and knowledge</h3>
+        <div class="project-knowledge-grid">
+          @for (area of record.knowledgeAreas; track area.title) {
+            <article><h4>{{ area.title }}</h4><p>{{ area.description }}</p></article>
+          }
+        </div>
+      </section>
+      }
       @if (record.document) {
       <div class="document-actions">
         <a [href]="record.document.viewHref" target="_blank" rel="noopener noreferrer">View certificate</a>

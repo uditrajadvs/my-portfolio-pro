@@ -1,33 +1,35 @@
 import type { CareerRecord } from './common/career-record.model';
+import { wealth360Data } from './wealth360.data';
 
 export const experienceData: CareerRecord[] = [
   {
     title: 'Software Engineer',
     organization: 'CGI',
+    featured: true,
     period: 'August 2024 – September 2026',
     location: 'Bangalore / Chennai, India',
-    description: 'Contributed to Wealth360, an enterprise wealth-management platform, supporting advisor and portfolio-management workflows.',
+    description: `Java backend development on ${wealth360Data.name}, an enterprise wealth-management platform for financial advisors and portfolio managers. My work focused on backend APIs, management-fee and portfolio-processing workflows, database performance and production reliability.`,
     highlights: [
       'Developed and enhanced backend APIs and integration flows across portfolio processing and management-fee capabilities.',
       'Worked with Java, Spring Boot, Apache Camel, MyBatis, Oracle SQL, and asynchronous messaging, reflecting the platform architecture.',
       'Delivered 20+ enhancements and supported financial validations for large account portfolios.',
       'Optimized SQL queries and MyBatis mappings, reducing execution time by up to 70%.',
       'Resolved 50+ production defects through root-cause analysis and authored JUnit tests to reduce regression risk.',
+      'Investigated request flows across Apache Camel integration routes, Spring Boot services and MyBatis/Oracle data access to isolate backend failures.',
+      'Built domain knowledge of service-layer transaction handling, request validation and asynchronous processing in an enterprise financial platform.',
     ],
-    technologies: ['Java', 'Spring Boot', 'Apache Camel', 'MyBatis', 'Oracle SQL', 'ActiveMQ', 'JUnit'],
+    technologies: wealth360Data.technologies,
   },
   {
     title: 'Software Development Engineer (Freelance)',
     organization: 'E-commerce and client projects',
     period: 'April 2023 – July 2024',
     location: 'Remote',
-    description: 'Delivered backend stabilization and responsive frontend work for freelance client projects, including a Shopify e-commerce engagement.',
+    description: 'Supported freelance client applications with Java/MySQL backend maintenance, defect resolution and requirement analysis, alongside web integration work.',
     highlights: [
       'Fixed and refactored 10+ Java/MySQL backend modules.',
-      'Built and enhanced responsive web pages using HTML, CSS, JavaScript, and Angular.',
-      'Implemented navigation, responsive layouts, and form validation; resolved 50+ reported bugs.',
-      'Worked with clients to clarify requirements and deliver agreed work on schedule.',
+      'Investigated application defects and worked with clients to clarify requirements and deliver agreed fixes.',
     ],
-    technologies: ['Java', 'MySQL', 'HTML', 'CSS', 'JavaScript', 'Angular', 'Shopify'],
+    technologies: ['Java', 'MySQL', 'JavaScript', 'Angular'],
   },
 ];
