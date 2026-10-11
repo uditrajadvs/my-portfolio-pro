@@ -1,11 +1,44 @@
-<section class="section-page dashboard-wrap" aria-labelledby="page-title">
+<section class="section-page dashboard-wrap" [class.career-revamp]="content().layout" aria-labelledby="page-title">
   <header class="page-heading">
     <p>{{ content().eyebrow }}</p>
     <h1 id="page-title">{{ content().title }}</h1>
     <p class="page-summary">{{ content().summary }}</p>
   </header>
 
-  @if (content().groups?.length) {
+  @if (content().layout) {
+    <nav class="career-navigation" aria-label="Explore professional work">
+      <a routerLink="/experience" [attr.aria-current]="content().layout === 'experience' ? 'page' : null">Experience</a>
+      <a routerLink="/projects" [attr.aria-current]="content().layout === 'projects' ? 'page' : null">Projects</a>
+    </nav>
+    <div class="work-records" [class.work-timeline]="content().layout === 'experience'">
+      @for (record of content().records; track record.title; let index = $index) {
+        <article class="work-record" [class.work-featured]="record.featured">
+          <header class="work-record-header">
+            <span class="work-symbol" aria-hidden="true"><svg viewBox="0 0 24 24">
+              @if (content().layout === 'experience') { <path d="M8 7V4h8v3M3 7h18v14H3V7Zm0 5c5 4 13 4 18 0M10 13h4v3h-4v-3Z"/> }
+              @else if (record.featured) { <path d="M3 3h18v7H3V3Zm0 11h18v7H3v-7M7 6h.01M7 17h.01M11 6h6M11 17h6"/> }
+              @else if (record.organization === 'Personal project') { <path d="m5 6-3 7v6h3v-3h14v3h3v-6l-3-7H5Zm-3 7h20M6 13h.01M18 13h.01"/> }
+              @else { <path d="M8 7V4h8v3M3 7h18v14H3V7Zm0 5c5 4 13 4 18 0"/> }
+            </svg></span>
+            <div><p class="work-organization">{{ record.organization }}</p><h2>{{ record.title }}</h2></div>
+            @if (record.featured) { <span class="work-feature-label">{{ content().layout === 'experience' ? 'Enterprise experience' : 'Featured project' }}</span> }
+          </header>
+          <div class="work-meta">@if (record.period) { <span>{{ record.period }}</span> } @if (record.location) { <span>{{ record.location }}</span> }</div>
+          <p class="work-description">{{ record.description }}</p>
+          <h3 class="work-subheading">{{ content().layout === 'experience' ? 'Key contributions' : 'What I built and improved' }}</h3>
+          <ul class="work-highlights">@for (highlight of record.highlights.slice(0, 3); track highlight) { <li><span aria-hidden="true">✓</span>{{ highlight }}</li> }</ul>
+          @if (record.highlights.length > 3) {
+            <details class="work-details"><summary>More contributions <span>{{ record.highlights.length - 3 }}</span></summary><ul class="work-highlights">@for (highlight of record.highlights.slice(3); track highlight) { <li><span aria-hidden="true">✓</span>{{ highlight }}</li> }</ul></details>
+          }
+          <div class="work-technologies" aria-label="Technologies">@for (technology of record.technologies; track technology) { <span>@if (icons[technology]) { <img [src]="'/icons/skills/' + icons[technology] + '.svg'" alt="" width="18" height="18" loading="lazy" /> }{{ technology }}</span> }</div>
+          @if (record.knowledgeAreas?.length) {
+            <details class="work-details project-knowledge"><summary>Backend architecture and knowledge <span>{{ record.knowledgeAreas?.length }} areas</span></summary><div class="work-knowledge-grid">@for (area of record.knowledgeAreas; track area.title) { <article><h4>{{ area.title }}</h4><p>{{ area.description }}</p></article> }</div></details>
+          }
+        </article>
+      }
+    </div>
+    <aside class="work-contact"><div><strong>Interested in working together?</strong><p>Let's discuss backend engineering opportunities and collaboration.</p></div><a routerLink="/contact">Let's connect <span aria-hidden="true">↗</span></a><div class="work-footer-art" aria-hidden="true">@if (content().layout === 'experience') { <img src="/images/career-mountains.svg" alt="" width="190" height="120" loading="lazy" /> } @else { <span class="work-growth-note">Build<br />Learn<br />Grow <span>↗</span></span><img src="/images/project-growth.svg" alt="" width="150" height="120" loading="lazy" /> }</div></aside>
+  } @else if (content().groups?.length) {
   <div class="skill-groups">
     @for (group of content().groups; track group.title) {
     <section class="content-card" [attr.aria-label]="group.title">

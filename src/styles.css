@@ -310,3 +310,16 @@ main .about-page .profile-quote p { font-size: 12px !important; }
 		transition: none;
 	}
 }
+
+/* Shared portrait treatment for Home and About Me. Crop comes from assets.data.ts. */
+.profile-portrait-frame {
+  flex-shrink: 0;
+  border: 5px solid var(--color-surface);
+  border-radius: 50%;
+  background: var(--color-primary-soft);
+  outline: 1px solid color-mix(in srgb, var(--color-primary) 35%, var(--color-border));
+  box-shadow: 0 0 0 5px var(--color-primary-soft), 0 8px 24px rgb(23 105 224 / 12%);
+}
+.profile-portrait-frame img {
+  display: block;
+}

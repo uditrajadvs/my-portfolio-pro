@@ -28,11 +28,16 @@ describe('App', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('#overview-title')?.textContent).toContain('Udit Raj');
-    expect(compiled.querySelector('#glance-title')?.textContent).toContain('At a glance');
-    expect(compiled.querySelector('.overview-card h2')?.textContent).toContain('About me');
-    expect(compiled.querySelectorAll('.overview-card').length).toBe(4);
-    expect(compiled.querySelector('.achievements-card')?.textContent).toContain('No confirmed awards');
-    expect(compiled.querySelector('.projects-card')?.textContent).toContain('Recent projects');
+    expect(compiled.querySelector('#overview-title')?.textContent).toContain('Java Backend Developer');
+    expect(compiled.querySelector('.home-actions a[ href="/resume"]')).toBeTruthy();
+    expect(compiled.querySelectorAll('.home-explore a').length).toBe(4);
+    expect(compiled.querySelector('#home-project-preview')?.textContent).toContain('Wealth360');
+    const projectButtons = compiled.querySelectorAll<HTMLButtonElement>('.home-work-picker button');
+    projectButtons[1].click();
+    fixture.detectChanges();
+    expect(projectButtons[1].getAttribute('aria-pressed')).toBe('true');
+    expect(projectButtons[0].getAttribute('aria-pressed')).toBe('false');
+    expect(compiled.querySelector('#home-project-preview')?.textContent).toContain('Ride Sharing Application');
     expect(compiled.querySelector('.header-socials, .hero-socials')).toBeNull();
     expect(compiled.querySelector('.footer-socials a[aria-label="LinkedIn profile"]')?.getAttribute('href')).toBe('https://www.linkedin.com/in/raj-udit');
     expect(compiled.querySelector('.footer-socials a[aria-label="GitHub profile"]')?.getAttribute('href')).toBe('https://github.com/uditrajadvs');
@@ -106,7 +111,17 @@ describe('App', () => {
 
     await router.navigateByUrl('/projects');
     fixture.detectChanges();
-    expect(compiled.querySelector('#page-title')?.textContent).toContain('Professional work areas');
+    expect(compiled.querySelector('#page-title')?.textContent).toContain('Projects');
+    expect(compiled.querySelectorAll('.work-record').length).toBe(3);
+    const architecture = compiled.querySelector<HTMLDetailsElement>('.project-knowledge')!;
+    expect(architecture.open).toBe(false);
+    architecture.querySelector('summary')!.click();
+    expect(architecture.open).toBe(true);
+    expect(architecture.textContent).toContain('MyBatis');
+    await router.navigateByUrl('/experience');
+    fixture.detectChanges();
+    expect(compiled.querySelectorAll('.work-timeline .work-record').length).toBe(2);
+    expect(compiled.querySelector('.work-timeline')?.textContent).toContain('June 2023');
   });
 
   it('should render the About Me profile dashboard', async () => {

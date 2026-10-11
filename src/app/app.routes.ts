@@ -28,6 +28,7 @@ export const routes: Routes = [
     path: 'experience',
     ...section({
       title: 'Experience',
+      layout: 'experience',
       eyebrow: 'PROFESSIONAL EXPERIENCE',
       summary: 'Backend engineering and client delivery across wealth-management and e-commerce work.',
       records: experienceData,
@@ -42,9 +43,10 @@ export const routes: Routes = [
   {
     path: 'projects',
     ...section({
-      title: 'Professional work areas',
+      title: 'Projects',
+      layout: 'projects',
       eyebrow: 'PROJECTS AND SELECTED WORK',
-      summary: 'Selected projects and public-safe descriptions of professional contributions. Financial institution names and internal implementation details are omitted.',
+      summary: 'Explore my work in Java backend development, enterprise integration, and client applications.',
       records: projectData,
     }),
     title: 'Projects | Udit Raj',

@@ -18,7 +18,7 @@ export const experienceData: CareerRecord[] = [
       'Investigated request flows across Apache Camel integration routes, Spring Boot services and MyBatis/Oracle data access to isolate backend failures.',
       'Built domain knowledge of service-layer transaction handling, request validation and asynchronous processing in an enterprise financial platform.',
     ],
-    technologies: wealth360Data.technologies,
+    technologies: [...wealth360Data.technologies, 'Microservices', 'Jenkins', 'Git', 'Bitbucket', 'Maven', 'Postman', 'Confluence'],
   },
   {
     title: 'Software Development Engineer (Freelance)',

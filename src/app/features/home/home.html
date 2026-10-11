@@ -1,78 +1,36 @@
-<div class="overview-page">
-  <section class="overview-hero dashboard-wrap" aria-labelledby="overview-title">
-    <article class="welcome-card">
-      <div class="welcome-copy">
-        <p class="greeting"><span aria-hidden="true">✦</span> Hello, I’m</p>
-        <h1 id="overview-title">{{ profile.name }}</h1>
-        <p class="hero-role">{{ profile.title }}</p>
-        <p class="hero-summary">Java backend developer with {{ profile.experienceLabel }} of experience supporting enterprise applications in wealth management and financial services.</p>
-        <div class="hero-actions">
-          <a class="action action-primary" routerLink="/projects">View my work <span aria-hidden="true">→</span></a>
-          <a class="action action-secondary" routerLink="/contact">Contact me <span aria-hidden="true">↗</span></a>
-        </div>
+﻿<div class="home-page">
+  <section class="home-hero" aria-labelledby="overview-title">
+    <div class="home-intro">
+      @if (profile.availability.openToOpportunities) { <a class="home-availability" routerLink="/contact"><span aria-hidden="true"></span>{{ profile.availability.label }} <svg class="opportunity-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V4h8v3M3 7h18v14H3V7Zm0 5c5 4 13 4 18 0M10 13h4v3h-4v-3Z"/></svg></a> }
+      <p class="home-eyebrow">HELLO, I'M</p>
+      <h1 id="overview-title">{{ profile.name }}<span>{{ profile.role }}</span></h1>
+      <p class="home-lead">Building reliable systems.<br /><strong>Making complex workflows work.</strong></p>
+      <p class="home-description">{{ profile.title }} with {{ profile.experienceLabel }} of experience in enterprise applications, backend integration and wealth management.</p>
+      <div class="home-actions">
+        <a class="home-button primary" routerLink="/projects">Explore my work <svg class="home-action-icon work-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V4h8v3M3 7h18v14H3V7Zm0 5c5 4 13 4 18 0M10 13h4v3h-4v-3Z"/></svg></a>
+        <a class="home-button" routerLink="/contact">Let's connect <svg class="home-action-icon connect-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v13H9l-6 4V4Z"/><circle cx="8" cy="10" r=".7"/><circle cx="12" cy="10" r=".7"/><circle cx="16" cy="10" r=".7"/></svg></a>
+        <a class="home-resume" routerLink="/resume">View resume <svg class="home-action-icon resume-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H5v18h14V8l-5-5Zm0 0v5h5M9 12h6M9 16h6"/></svg></a>
       </div>
-      <img
-        class="welcome-photo"
-        [src]="profile.photo.src"
-        [alt]="'Portrait of ' + profile.name"
-        [attr.width]="profile.photo.width"
-        [attr.height]="profile.photo.height"
-        fetchpriority="high"
-      />
-    </article>
-
-    <aside class="glance-card" aria-labelledby="glance-title">
-      <h2 id="glance-title">At a glance</h2>
-      @for (fact of profile.quickFacts; track fact.label) {
-        <div class="glance-item">
-          <span class="glance-icon" aria-hidden="true">{{ fact.symbol }}</span>
-          <p><span>{{ fact.label }}</span><strong>{{ fact.value }}</strong></p>
-        </div>
-      }
+    </div>
+    <aside class="home-profile" aria-label="Professional profile">
+      <div class="home-profile-top"><span>{{ profile.title }}</span><span aria-hidden="true">&lt;/&gt;</span></div>
+      <div class="home-portrait profile-portrait-frame"><img [src]="profile.photo.src" [alt]="'Portrait of ' + profile.name" [attr.width]="profile.photo.width" [attr.height]="profile.photo.height" [style.width]="profile.photo.portrait.width" [style.left]="profile.photo.portrait.left" [style.top]="profile.photo.portrait.top" fetchpriority="high" decoding="async" /></div>
+      <div class="home-profile-identity"><strong>{{ profile.name }}</strong><span>{{ profile.role }}</span></div>
+      <p class="home-profile-caption">People first. Engineering driven.</p>
+      <dl class="home-facts"><div><dt>Experience</dt><dd>{{ profile.experienceLabel }}</dd></div><div><dt>Employer</dt><dd>{{ profile.employer }}</dd></div><div><dt>Specialization</dt><dd>Backend systems</dd></div></dl>
+      <a routerLink="/about">Meet the person behind the code <span class="home-profile-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg></span></a>
     </aside>
   </section>
-
-  <section class="overview-cards dashboard-wrap" aria-label="Portfolio sections">
-    @for (card of cards; track card.id) {
-      <a class="overview-card" [routerLink]="'/' + card.id">
-        <div class="card-heading">
-          <span class="card-icon" aria-hidden="true">{{ card.icon }}</span>
-          <h2>{{ card.title }}</h2>
-          <span class="card-menu" aria-hidden="true">⋮</span>
-        </div>
-        @if (card.id === 'skills') {
-          <p class="card-eyebrow">{{ card.eyebrow }}</p>
-          <div class="skill-preview">
-            @for (skill of previewSkills; track skill) { <span>{{ skill }}</span> }
-          </div>
-        } @else {
-          <p class="card-summary">{{ card.summary }}</p>
-          <p class="card-detail">{{ card.detail }}</p>
-        }
-        <span class="card-link">{{ card.id === 'about' ? 'Know more' : 'View details' }} <span aria-hidden="true">→</span></span>
-      </a>
-    }
+  <nav class="home-toolkit" aria-label="Explore backend skills"><div><span class="home-eyebrow">MY CORE TOOLKIT</span><span>Built on solid foundations</span></div><div class="home-tools">@for (skill of profile.heroTechnologies; track skill) { <a routerLink="/skills">@if (icons[skill]) { <img [src]="'/icons/skills/' + icons[skill] + '.svg'" alt="" width="26" height="26" /> } @else { <span aria-hidden="true">&lt;/&gt;</span> }{{ skill }}</a> }</div><a class="home-text-link" routerLink="/skills">All skills →</a></nav>
+  <section class="home-work" aria-labelledby="home-work-title">
+    <header class="home-section-heading"><div><p class="home-eyebrow">EXPERIENCE INTO IMPACT</p><h2 id="home-work-title">A closer look at my work.</h2></div><a class="home-text-link" routerLink="/experience">Explore experience →</a></header>
+    <div class="home-work-layout">
+      <div class="home-work-picker" role="group" aria-label="Choose a project to preview">@for (project of projects; track project.title; let index = $index) { <button type="button" [attr.aria-pressed]="selectedIndex() === index" aria-controls="home-project-preview" (click)="selectedIndex.set(index)"><span class="home-project-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="projectSymbols[index]"/></svg></span><span><small>{{ project.organization }}</small><strong>{{ project.title }}</strong></span><span aria-hidden="true">↗</span></button> }</div>
+      <article id="home-project-preview" class="home-project-preview" aria-live="polite" aria-atomic="true">@for (activeProject of [selectedProject()]; track activeProject.title) { <div class="home-project-content"><p class="home-eyebrow">{{ selectedProject().featured ? 'FEATURED PROFESSIONAL WORK' : 'SELECTED PROJECT' }}</p><h3>{{ selectedProject().title }}</h3><p>{{ selectedProject().description }}</p><ul class="home-contributions">@for (highlight of selectedProject().highlights.slice(0, 3); track highlight) { <li><span aria-hidden="true">✓</span>{{ highlight }}</li> }</ul><div class="home-project-tech">@for (technology of selectedProject().technologies?.slice(0, 5); track technology) { <span>@if (icons[technology]) { <img [src]="'/icons/skills/' + icons[technology] + '.svg'" alt="" width="16" height="16" loading="lazy" /> } @else { <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5-6 7 6 7m8-14 6 7-6 7M14 3l-4 18"/></svg> }{{ technology }}</span> }</div><a class="home-text-link" routerLink="/projects">Explore projects →</a></div> }</article>
+    </div>
   </section>
-
-  <section class="overview-bottom dashboard-wrap" aria-label="Achievements and recent work">
-    <article class="achievements-card">
-      <div class="section-heading"><span class="card-icon" aria-hidden="true">☆</span><h2>Achievements</h2><span class="card-menu" aria-hidden="true">⋮</span></div>
-      <div class="achievement-empty">
-        <span class="empty-award" aria-hidden="true">☆</span>
-        <div><strong>No confirmed awards added yet</strong><p>Achievements will be shown here once details are provided.</p></div>
-      </div>
-      <a class="card-link" routerLink="/achievements">Achievement details <span aria-hidden="true">→</span></a>
-    </article>
-
-    <article class="projects-card">
-      <div class="section-heading"><span class="card-icon" aria-hidden="true">▣</span><h2>Recent projects</h2><span class="card-menu" aria-hidden="true">⋮</span></div>
-      <p class="work-note">Public-safe descriptions of confirmed work areas; confidential project names are omitted.</p>
-      <ul class="project-list">
-        @for (item of work; track item) {
-          <li><span class="project-thumb" aria-hidden="true">&lt;/&gt;</span><span>{{ item }}</span></li>
-        }
-      </ul>
-      <a class="card-link" routerLink="/projects">View all projects <span aria-hidden="true">→</span></a>
-    </article>
-  </section>
+  <nav class="home-explore" aria-label="More about my professional journey">@for (card of cards; track card.id) { <a [routerLink]="'/' + card.id"><span class="home-eyebrow">{{ card.eyebrow }}</span><strong>{{ card.title }}</strong><span aria-hidden="true">↗</span></a> }</nav>
+  <section class="home-connect" aria-labelledby="home-connect-title"><div><p class="home-eyebrow">LET'S BUILD SOMETHING MEANINGFUL</p><h2 id="home-connect-title">Have an opportunity in mind?</h2><p>Let's talk backend engineering, system design, or your next project.</p></div><a class="home-button primary" routerLink="/contact">Start a conversation ↗</a></section>
 </div>
+
+
