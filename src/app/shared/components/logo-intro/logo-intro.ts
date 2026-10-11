@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit, output } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, output } from '@angular/core';
+import { profileData } from '../../../data/profile.data';
 
 @Component({
   selector: 'app-logo-intro',
@@ -7,6 +8,7 @@ import { Component, OnDestroy, OnInit, output } from '@angular/core';
 })
 export class LogoIntro implements OnInit, OnDestroy {
   readonly complete = output<void>();
+  protected readonly profile = profileData;
   private fallbackTimer?: ReturnType<typeof setTimeout>;
   private finished = false;
 
@@ -14,7 +16,7 @@ export class LogoIntro implements OnInit, OnDestroy {
     const reducedMotion =
       typeof window !== 'undefined' &&
       window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
-    this.fallbackTimer = setTimeout(() => this.finish(), reducedMotion ? 0 : 1840);
+    this.fallbackTimer = setTimeout(() => this.finish(), reducedMotion ? 0 : 1550);
   }
 
   ngOnDestroy(): void {
@@ -29,7 +31,8 @@ export class LogoIntro implements OnInit, OnDestroy {
     }
   }
 
-  private finish(): void {
+  @HostListener('document:keydown.escape')
+  protected finish(): void {
     if (this.finished) {
       return;
     }

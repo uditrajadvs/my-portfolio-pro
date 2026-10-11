@@ -1,15 +1,17 @@
 import { Routes } from '@angular/router';
 import { About } from './features/about/about';
 import { Home } from './features/home/home';
+import { Resume } from './features/resume/resume';
+import { Education } from './features/education/education';
 import { SectionPage, SectionPageContent } from './features/section-page/section-page';
 import {
   achievementData,
-  certificationData,
-  educationData,
   experienceData,
   projectData,
 } from './data/career.data';
-import { profileData } from './data/profile.data';
+import { Contact } from './features/contact/contact';
+import { Skills } from './features/skills/skills';
+import { Certifications } from './features/certifications/certifications';
 
 const section = (content: SectionPageContent) => ({ component: SectionPage, data: { content } });
 
@@ -18,9 +20,15 @@ export const routes: Routes = [
   { path: 'overview', component: Home, title: 'Overview | Udit Raj' },
   { path: 'about', component: About, title: 'About Me | Udit Raj' },
   {
+    path: 'resume',
+    component: Resume,
+    title: 'Resume | Udit Raj',
+  },
+  {
     path: 'experience',
     ...section({
       title: 'Experience',
+      layout: 'experience',
       eyebrow: 'PROFESSIONAL EXPERIENCE',
       summary: 'Backend engineering and client delivery across wealth-management and e-commerce work.',
       records: experienceData,
@@ -29,45 +37,29 @@ export const routes: Routes = [
   },
   {
     path: 'skills',
-    ...section({
-      title: 'Technical skills',
-      eyebrow: 'BACKEND TOOLKIT',
-      summary: 'Technologies and engineering practices from the supplied professional profile.',
-      groups: [
-        { title: 'Programming', skills: ['Java', 'C++', 'JavaScript'] },
-        { title: 'Backend', skills: ['Spring Boot', 'Spring Framework', 'REST APIs', 'Microservices', 'MyBatis'] },
-        { title: 'Integration and messaging', skills: ['Apache Camel', 'ActiveMQ', 'Apache Kafka'] },
-        { title: 'Databases', skills: ['Oracle SQL', 'MySQL'] },
-        { title: 'Testing and quality', skills: ['JUnit', 'SonarLint'] },
-        { title: 'Build and DevOps', skills: ['Maven', 'Jenkins', 'Git', 'GitHub', 'Bitbucket'] },
-        { title: 'Tools and platforms', skills: ['Postman', 'Swagger/OpenAPI', 'Linux', 'Tomcat', 'AWS', 'IntelliJ IDEA', 'Confluence'] },
-        { title: 'Engineering concepts', skills: ['OOP', 'JVM', 'SDLC', 'Data Structures and Algorithms', 'System Design'] },
-      ],
-    }),
+    component: Skills,
     title: 'Skills | Udit Raj',
   },
   {
     path: 'projects',
     ...section({
-      title: 'Professional work areas',
+      title: 'Projects',
+      layout: 'projects',
       eyebrow: 'PROJECTS AND SELECTED WORK',
-      summary: 'Selected projects and public-safe descriptions of professional contributions. Financial institution names and internal implementation details are omitted.',
+      summary: 'Explore my work in Java backend development, enterprise integration, and client applications.',
       records: projectData,
     }),
     title: 'Projects | Udit Raj',
   },
   {
     path: 'education',
-    ...section({
-      title: 'Education',
-      eyebrow: 'ACADEMIC BACKGROUND',
-      summary: 'Bachelor of Technology in Electronics and Communication Engineering.',
-      records: educationData,
-    }),
+    component: Education,
     title: 'Education | Udit Raj',
   },
   {
     path: 'achievements',
+    // Keep the implementation for later; unavailable routes fall back to Overview.
+    canMatch: [() => false],
     ...section({
       title: 'Achievements',
       eyebrow: 'PROFESSIONAL HIGHLIGHTS',
@@ -78,27 +70,12 @@ export const routes: Routes = [
   },
   {
     path: 'certifications',
-    ...section({
-      title: 'Certifications',
-      eyebrow: 'CREDENTIALS',
-      summary: 'Certification currently listed in the supplied resume.',
-      records: certificationData,
-    }),
+    component: Certifications,
     title: 'Certifications | Udit Raj',
   },
   {
     path: 'contact',
-    ...section({
-      title: 'Contact',
-      eyebrow: 'GET IN TOUCH',
-      summary: 'Send a message with the form below, or reach out by email, phone, or a professional profile.',
-      contact: {
-        email: 'uditraj.se@gmail.com',
-        phone: profileData.phone,
-        linkedin: profileData.socialLinks.linkedin,
-        github: profileData.socialLinks.github,
-      },
-    }),
+    component: Contact,
     title: 'Contact | Udit Raj',
   },
   { path: '**', redirectTo: 'overview' },

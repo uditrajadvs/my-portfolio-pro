@@ -19,3 +19,22 @@
   .intro-screen { animation-duration: 1ms; animation-delay: 0ms; }
   .intro-logo, .letter-u, .letter-r-core, .letter-r-leg, .intro-name p, .intro-name span { animation-duration: 1ms; animation-delay: 0ms; }
 }
+
+/* A shorter, staggered reveal with an accessible escape hatch. */
+.intro-screen { animation: intro-fade-out 300ms ease-in 1.15s forwards; }
+.intro-screen::before { content: ''; position: absolute; width: min(65vw, 480px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgb(59 130 246 / 13%), transparent 68%); pointer-events: none; }
+.intro-lockup { position: relative; }
+.intro-logo { width: clamp(150px, 34vw, 230px); animation: none; filter: none; }
+.intro-logo .letter-u { opacity: 1; transform: none; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw-monogram 560ms cubic-bezier(.22,1,.36,1) 60ms forwards; }
+.intro-logo .letter-r-core, .intro-logo .letter-r-leg { transform: translateX(18px); animation: letter-from-right 420ms cubic-bezier(.22,1,.36,1) 250ms forwards; }
+.intro-logo .letter-r-leg { animation-delay: 350ms; }
+.intro-name p { animation-delay: 560ms; animation-duration: 300ms; }
+.intro-name span { text-transform: uppercase; animation-delay: 700ms; animation-duration: 300ms; }
+.intro-skip { position: absolute; right: 24px; bottom: max(24px, env(safe-area-inset-bottom)); display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 14px; border: 1px solid rgb(148 163 184 / 30%); border-radius: 8px; background: transparent; color: #cbd5e1; font: 500 12px var(--font-body); cursor: pointer; }
+.intro-skip:hover { background: rgb(148 163 184 / 10%); color: #fff; }
+.intro-skip:focus-visible { outline: 2px solid var(--color-logo-primary); outline-offset: 4px; }
+@keyframes draw-monogram { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .intro-screen { animation: none; visibility: hidden; }
+  .intro-logo path, .intro-name p, .intro-name span { animation: none !important; opacity: 1; transform: none; stroke-dashoffset: 0; }
+}
