@@ -11,7 +11,7 @@ import {
   projectData,
 } from './data/career.data';
 import { Contact } from './features/contact/contact';
-import { skillsData } from './data/skills.data';
+import { Skills } from './features/skills/skills';
 
 const section = (content: SectionPageContent) => ({ component: SectionPage, data: { content } });
 
@@ -36,12 +36,7 @@ export const routes: Routes = [
   },
   {
     path: 'skills',
-    ...section({
-      title: 'Technical skills',
-      eyebrow: 'BACKEND TOOLKIT',
-      summary: 'Technologies and engineering practices from the supplied professional profile.',
-      groups: skillsData,
-    }),
+    component: Skills,
     title: 'Skills | Udit Raj',
   },
   {

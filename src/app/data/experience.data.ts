@@ -23,7 +23,7 @@ export const experienceData: CareerRecord[] = [
   {
     title: 'Software Development Engineer (Freelance)',
     organization: 'E-commerce and client projects',
-    period: 'April 2023 – July 2024',
+    period: 'June 2023 – July 2024',
     location: 'Remote',
     description: 'Supported freelance client applications with Java/MySQL backend maintenance, defect resolution and requirement analysis, alongside web integration work.',
     highlights: [

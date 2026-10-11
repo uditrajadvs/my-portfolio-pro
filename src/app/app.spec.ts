@@ -151,4 +151,29 @@ describe('App', () => {
     expect(certificateLinks[0]?.getAttribute('href')).toBe(documentsData.javaCertification.viewHref);
     expect(certificateLinks[1]?.getAttribute('href')).toBe(documentsData.javaCertification.downloadHref);
   });
+
+  it('should filter skills and recover from an empty search', async () => {
+    const fixture = TestBed.createComponent(App);
+    await TestBed.inject(Router).navigateByUrl('/skills');
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const originalCount = compiled.querySelectorAll('.skill-category').length;
+    const databases = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.category-filters button')).find(button => button.textContent?.trim() === 'Databases')!;
+    databases.click();
+    fixture.detectChanges();
+    expect(databases.getAttribute('aria-pressed')).toBe('true');
+    expect(compiled.querySelectorAll('.skill-category').length).toBe(1);
+    expect(compiled.querySelector('.skills-grid')?.textContent).toContain('MySQL');
+    expect(compiled.querySelector('.skills-grid')?.textContent).not.toContain('Spring Boot');
+    const search = compiled.querySelector<HTMLInputElement>('input[type="search"]')!;
+    search.value = 'no-such-skill';
+    search.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    expect(compiled.querySelector('.skills-empty')).toBeTruthy();
+    compiled.querySelector<HTMLButtonElement>('.skills-empty button')!.click();
+    fixture.detectChanges();
+    expect(search.value).toBe('');
+    expect(compiled.querySelectorAll('.skill-category').length).toBe(originalCount);
+  });
 });

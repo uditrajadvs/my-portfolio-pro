@@ -16,13 +16,18 @@ Edit portfolio facts here; components and routes consume these exports.
 | `projects.data.ts` | Project records |
 | `achievements.data.ts` | Professional achievements |
 | `certifications.data.ts` | Certification records referencing shared documents |
-| `skills.data.ts` | Skill groups and overview skill selection |
+| `skills.data.ts` | Skill groups, overview selection, icon mappings and core strengths |
 | `overview.data.ts` | Dashboard presentation; shared facts come from category files |
 | `career.data.ts` | Compatibility exports only; contains no record copies |
 
 Use `contactData` and `documentsData` for shared links. `profileData` exposes
 derived contact/document properties for existing views. Keep URLs and facts out
 of templates. Coursework and education highlights reference education records.
+
+Skill logo assets are hosted in `public/icons/skills/` from Devicon v2.17.0.
+Their MIT license is included in `public/icons/skills/LICENSE.txt`. Skills without
+a brand logo use the category SVG icon. Adding a logo requires both the asset
+and its mapping in `skillIcons`; category counts derive from the actual data.
 
 
 ## Wealth360 reference
