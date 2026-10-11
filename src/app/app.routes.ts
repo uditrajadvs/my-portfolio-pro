@@ -10,7 +10,7 @@ import {
   experienceData,
   projectData,
 } from './data/career.data';
-import { contactData } from './data/common/contact.data';
+import { Contact } from './features/contact/contact';
 import { skillsData } from './data/skills.data';
 
 const section = (content: SectionPageContent) => ({ component: SectionPage, data: { content } });
@@ -81,12 +81,7 @@ export const routes: Routes = [
   },
   {
     path: 'contact',
-    ...section({
-      title: 'Contact',
-      eyebrow: 'GET IN TOUCH',
-      summary: 'Send a message with the form below, or reach out by email, phone, or a professional profile.',
-      contact: contactData,
-    }),
+    component: Contact,
     title: 'Contact | Udit Raj',
   },
   { path: '**', redirectTo: 'overview' },

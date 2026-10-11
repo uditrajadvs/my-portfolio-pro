@@ -77,9 +77,11 @@ describe('App', () => {
     expect(form.getAttribute('action')).toBe('https://kwesforms.com/api/f/rHLhEpyDurp3vFt3Galy');
     expect(form.querySelector('input[name="name"]')).toBeTruthy();
     expect(form.querySelector('input[name="email"]')).toBeTruthy();
-    expect(form.querySelector('input[name="subject"]')).toBeTruthy();
+    expect(form.querySelector('select[name="subject"]')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('#contact-title')?.textContent).toBe("Let's Connect");
+    expect(fixture.nativeElement.querySelector('.contact-resume')).toBeNull();
     expect(form.querySelector('textarea[name="message"]')).toBeTruthy();
-    expect(form.querySelector('button[type="submit"]')?.textContent).toContain('Send message');
+    expect(form.querySelector('button[type="submit"]')?.textContent).toContain('Send Message');
   });
 
   it('should navigate to other sections without leaving the SPA', async () => {

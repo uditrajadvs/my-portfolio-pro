@@ -12,3 +12,9 @@ export const socialLinks = {
 };
 
 export const contactFormAction = 'https://kwesforms.com/api/f/rHLhEpyDurp3vFt3Galy';
+
+export const contactPageData = {
+  heading: "Let's Connect",
+  summary: "I'm always open to discussing software engineering opportunities, backend development, system design, or collaboration on exciting projects.",
+  subjects: ['Software engineering opportunity', 'Backend development', 'System design', 'Project collaboration', 'Other'],
+};

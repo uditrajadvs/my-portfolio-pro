@@ -34,8 +34,10 @@
   font-weight: 700;
 }
 
-.resume-actions { display: flex; align-items: center; gap: 16px; }
-.resume-open { color: var(--color-primary); font-size: 13px; text-underline-offset: 3px; }
+.resume-actions { display: flex; align-items: center; gap: 8px; }
+.resume-actions a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border-radius: var(--radius-control); text-decoration: none; }
+.resume-open { color: var(--color-primary); background: var(--color-primary-soft); }
+.resume-open:hover { box-shadow: inset 0 0 0 1px var(--color-primary); }
 
 .resume-download {
   display: inline-flex;
@@ -43,7 +45,7 @@
   justify-content: center;
   gap: 8px;
   min-height: 44px;
-  padding: 8px 14px;
+  padding: 0;
   border-radius: var(--radius-control);
   color: #fff;
   background: var(--color-primary);
@@ -53,7 +55,7 @@
 }
 
 .resume-download:hover { background: var(--color-primary-hover); }
-.resume-download svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.resume-actions svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .resume-actions a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
 
 .resume-preview {
@@ -69,7 +71,6 @@
 @media (max-width: 600px) {
   .resume-page { width: calc(100% - 16px); padding-block: 8px; }
   .resume-card { height: calc(100dvh - var(--header-height) - 16px); }
-  .resume-toolbar { flex-wrap: wrap; padding: 8px 12px; gap: 6px; }
-  .resume-toolbar h1 { width: 100%; text-align: center; font-size: 16px; }
-  .resume-actions { width: 100%; justify-content: space-between; gap: 8px; }
+  .resume-toolbar { padding: 8px 12px; gap: 6px; }
+  .resume-toolbar h1 { font-size: 16px; }
 }

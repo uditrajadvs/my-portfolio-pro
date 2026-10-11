@@ -1,11 +1,6 @@
-import { afterNextRender, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import type { CareerRecord } from '../../data/common/career-record.model';
-import { contactFormAction } from '../../data/common/contact.data';
-
-interface KwesFormsApi {
-  init?: () => void;
-}
 
 export interface SectionPageContent {
   title: string;
@@ -14,7 +9,6 @@ export interface SectionPageContent {
   items?: string[];
   groups?: { title: string; skills: string[] }[];
   records?: CareerRecord[];
-  contact?: { email: string; phone: string; linkedin: string; github: string };
 }
 
 @Component({
@@ -24,16 +18,6 @@ export interface SectionPageContent {
   styleUrl: './section-page.css',
 })
 export class SectionPage {
-  protected readonly contactFormAction = contactFormAction;
   readonly content = input.required<SectionPageContent>();
 
-  constructor() {
-    afterNextRender(() => {
-      if (!this.content().contact) {
-        return;
-      }
-      const kwes = (window as unknown as { kwesforms?: KwesFormsApi }).kwesforms;
-      kwes?.init?.();
-    });
-  }
 }

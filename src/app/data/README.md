@@ -4,7 +4,7 @@ Edit portfolio facts here; components and routes consume these exports.
 
 | File | Purpose |
 | --- | --- |
-| `common/contact.data.ts` | Email, phone, social URLs and contact-form endpoint |
+| `common/contact.data.ts` | Email, phone, social URLs, contact-form endpoint, Contact heading and subject options |
 | `common/documents.data.ts` | Resume and Java certificate; Drive IDs occur only here |
 | `common/career-record.model.ts` | Shared career record shape |
 | `common/navigation.data.ts` | Main navigation labels and destinations |
@@ -23,6 +23,7 @@ Edit portfolio facts here; components and routes consume these exports.
 Use `contactData` and `documentsData` for shared links. `profileData` exposes
 derived contact/document properties for existing views. Keep URLs and facts out
 of templates. Coursework and education highlights reference education records.
+
 
 ## Wealth360 reference
 
