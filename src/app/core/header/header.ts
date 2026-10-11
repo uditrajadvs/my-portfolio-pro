@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, HostListener, input, output, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { profileData } from '../../data/profile.data';
 import { navigationData } from '../../data/common/navigation.data';
@@ -16,6 +16,7 @@ export class Header {
   protected readonly menuOpen = signal(false);
   protected readonly navigation = navigationData;
 
+  @HostListener('document:keydown.escape')
   protected closeMenu(): void {
     this.menuOpen.set(false);
   }

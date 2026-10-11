@@ -65,3 +65,5 @@
 @media (max-width: 1000px) { .profile-card { grid-template-columns: 104px minmax(0, 1fr); gap: 12px; } .portrait-frame { width: 104px; height: 104px; } .professional-details div { grid-template-columns: 1fr; gap: 3px; } .values-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .value-item:nth-child(3) { border-left: 0; padding-left: 0; } }
 @media (max-width: 780px) { .about-layout { grid-template-columns: 1fr; } .about-heading { width: 100%; } .about-right-column { margin-top: 0; } .profile-card { grid-template-columns: 112px minmax(0, 1fr); } .portrait-frame { width: 112px; height: 112px; } }
 @media (max-width: 450px) { .about-page { width: calc(100% - 20px); } .about-detail-row { grid-template-columns: 1fr; } .profile-card { grid-template-columns: 90px minmax(0, 1fr); } .portrait-frame { width: 90px; height: 90px; } }
+
+.profile-location-icon { width: 14px; height: 14px; flex-shrink: 0; fill: none; stroke: var(--color-primary); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }

@@ -20,6 +20,17 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
+  it('should let visitors skip the intro and unlock the page', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const page = fixture.nativeElement as HTMLElement;
+    expect(page.querySelector('app-layout')?.hasAttribute('inert')).toBe(true);
+    page.querySelector<HTMLButtonElement>('.intro-skip')!.click();
+    fixture.detectChanges();
+    expect(page.querySelector('app-logo-intro')).toBeNull();
+    expect(page.querySelector('app-layout')?.hasAttribute('inert')).toBe(false);
+  });
+
   it('should render the Overview dashboard', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);

@@ -5,7 +5,7 @@ export const navigationData = [
   { label: 'Experience', href: '/experience' },
   { label: 'Skills', href: '/skills' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Achievements', href: '/achievements' },
+  // Achievements is hidden until the section is ready for visitors.
   { label: 'Certifications', href: '/certifications' },
   { label: 'Resume', href: '/resume' },
   { label: 'Contact', href: '/contact' },

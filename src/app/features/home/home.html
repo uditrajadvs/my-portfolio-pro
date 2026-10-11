@@ -16,7 +16,7 @@
       <div class="home-profile-top"><span>{{ profile.title }}</span><span aria-hidden="true">&lt;/&gt;</span></div>
       <div class="home-portrait profile-portrait-frame"><img [src]="profile.photo.src" [alt]="'Portrait of ' + profile.name" [attr.width]="profile.photo.width" [attr.height]="profile.photo.height" [style.width]="profile.photo.portrait.width" [style.left]="profile.photo.portrait.left" [style.top]="profile.photo.portrait.top" fetchpriority="high" decoding="async" /></div>
       <div class="home-profile-identity"><strong>{{ profile.name }}</strong><span>{{ profile.role }}</span></div>
-      <p class="home-profile-caption">People first. Engineering driven.</p>
+      <p class="home-profile-caption">Thoughtful engineering. Reliable systems.</p>
       <dl class="home-facts"><div><dt>Experience</dt><dd>{{ profile.experienceLabel }}</dd></div><div><dt>Employer</dt><dd>{{ profile.employer }}</dd></div><div><dt>Specialization</dt><dd>Backend systems</dd></div></dl>
       <a routerLink="/about">Meet the person behind the code <span class="home-profile-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg></span></a>
     </aside>

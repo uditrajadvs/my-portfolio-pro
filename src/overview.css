@@ -186,3 +186,37 @@ app-home .home-intro h1{font-size:clamp(44px,5vw,68px)!important;line-height:1.0
 .home-project-content > p:not(.home-eyebrow) { color: var(--color-muted); font-size: 13px; line-height: 1.65; margin: 0; }
 @keyframes home-project-fade { from { opacity: .3; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .home-project-content { animation: none; } }
+
+/* Home enters after the intro, rather than animating underneath its overlay. */
+.intro-pending app-home .home-intro > :not(.home-actions),
+.intro-pending app-home .home-profile,
+.intro-pending app-home .home-actions,
+.intro-pending app-home .home-toolkit {
+  opacity: 0;
+}
+.intro-revealed app-home .home-intro > :not(.home-actions) {
+  animation: home-opening-reveal 360ms cubic-bezier(.22,1,.36,1) both;
+}
+.intro-revealed app-home .home-profile {
+  animation: home-opening-reveal 400ms cubic-bezier(.22,1,.36,1) 70ms both;
+}
+.intro-revealed app-home .home-actions {
+  animation: home-opening-reveal 360ms cubic-bezier(.22,1,.36,1) 140ms both;
+}
+.intro-revealed app-home .home-toolkit {
+  animation: home-opening-reveal 360ms cubic-bezier(.22,1,.36,1) 200ms both;
+}
+@keyframes home-opening-reveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-pending app-home .home-intro > :not(.home-actions),
+  .intro-pending app-home .home-profile,
+  .intro-pending app-home .home-actions,
+  .intro-pending app-home .home-toolkit { opacity: 1; }
+  .intro-revealed app-home .home-intro > :not(.home-actions),
+  .intro-revealed app-home .home-profile,
+  .intro-revealed app-home .home-actions,
+  .intro-revealed app-home .home-toolkit { animation: none; }
+}

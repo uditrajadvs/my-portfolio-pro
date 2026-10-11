@@ -13,6 +13,7 @@ const identity = {
 
 export interface PortfolioProfile {
 	name: string;
+	location: string;
 	photo: typeof assetsData.profilePhoto;
 	languages: string[];
 	availability: { openToOpportunities: boolean; label: string };
@@ -40,6 +41,7 @@ export interface PortfolioProfile {
 
 export const profileData: PortfolioProfile = {
 	name: identity.name,
+	location: 'Bangalore, India',
 	photo: assetsData.profilePhoto,
 	languages: ['English', 'Hindi'],
 	availability: { openToOpportunities: true, label: 'Open to opportunities' },

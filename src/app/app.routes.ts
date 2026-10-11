@@ -6,12 +6,12 @@ import { Education } from './features/education/education';
 import { SectionPage, SectionPageContent } from './features/section-page/section-page';
 import {
   achievementData,
-  certificationData,
   experienceData,
   projectData,
 } from './data/career.data';
 import { Contact } from './features/contact/contact';
 import { Skills } from './features/skills/skills';
+import { Certifications } from './features/certifications/certifications';
 
 const section = (content: SectionPageContent) => ({ component: SectionPage, data: { content } });
 
@@ -58,6 +58,8 @@ export const routes: Routes = [
   },
   {
     path: 'achievements',
+    // Keep the implementation for later; unavailable routes fall back to Overview.
+    canMatch: [() => false],
     ...section({
       title: 'Achievements',
       eyebrow: 'PROFESSIONAL HIGHLIGHTS',
@@ -68,12 +70,7 @@ export const routes: Routes = [
   },
   {
     path: 'certifications',
-    ...section({
-      title: 'Certifications',
-      eyebrow: 'CREDENTIALS',
-      summary: 'Certification currently listed in the supplied resume.',
-      records: certificationData,
-    }),
+    component: Certifications,
     title: 'Certifications | Udit Raj',
   },
   {

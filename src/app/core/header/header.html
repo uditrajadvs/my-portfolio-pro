@@ -2,7 +2,7 @@
   <div class="header-inner">
     <a class="brand" routerLink="/overview" aria-label="Udit — overview" (click)="closeMenu()">
       <img class="brand-mark" src="/icons/ur-monogram.svg" alt="" aria-hidden="true" />
-      <span>{{ profile.name }}</span>
+      <span class="brand-identity"><strong>{{ profile.name }}</strong><small>{{ profile.role }}</small></span>
     </a>
 
     <button

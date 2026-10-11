@@ -26,6 +26,7 @@
           <h2>{{ profile.name }}</h2>
           <p class="profile-title">{{ profile.role }}</p>
           <ul class="profile-facts" aria-label="Professional contact and role information">
+            <li><svg class="profile-location-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{ profile.location }}</li>
             <li><span aria-hidden="true">⌘</span>{{ profile.title }}</li>
             <li><span aria-hidden="true">@</span><a [href]="profile.socialLinks.email">{{ contact.email }}</a></li>
             <li><span aria-hidden="true">☎</span><a [href]="'tel:' + contact.phone">{{ contact.phone }}</a></li>
@@ -50,6 +51,7 @@
         <h2 class="card-title" id="facts-title"><span aria-hidden="true">▧</span> Quick facts</h2>
         <dl class="facts-grid">
           <div><dt>Full name</dt><dd>{{ profile.name }}</dd></div>
+          <div><dt>Current location</dt><dd>{{ profile.location }}</dd></div>
           <div><dt>Designation</dt><dd>{{ profile.title }}</dd></div>
           <div><dt>Role</dt><dd>{{ profile.role }}</dd></div>
           <div><dt>Experience</dt><dd>{{ profile.experienceLabel }}</dd></div>
