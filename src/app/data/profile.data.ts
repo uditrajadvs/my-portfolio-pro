@@ -7,7 +7,7 @@ const identity = {
   name: 'Udit Raj',
   title: experienceData[0].title,
   employer: experienceData[0].organization,
-  experienceLabel: '3+ years',
+  experienceLabel: '2+ years',
   role: 'Java Backend Developer',
 };
 
