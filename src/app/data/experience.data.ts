@@ -21,9 +21,9 @@ export const experienceData: CareerRecord[] = [
     technologies: [...wealth360Data.technologies, 'Microservices', 'Jenkins', 'Git', 'Bitbucket', 'Maven', 'Postman', 'Confluence'],
   },
   {
-    title: 'Software Development Engineer (Freelance)',
+    title: 'Software Development Engineer',
     organization: 'E-commerce and client projects',
-    period: 'June 2023 – July 2024',
+    period: 'June 2023 – September 2023',
     location: 'Remote',
     description: 'Supported freelance client applications with Java/MySQL backend maintenance, defect resolution and requirement analysis, alongside web integration work.',
     highlights: [
