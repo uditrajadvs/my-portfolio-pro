@@ -1,21 +1,21 @@
 <section class="skills-page" aria-labelledby="skills-title">
   <header class="skills-heading">
-    <div><p class="skills-eyebrow">MY ENGINEERING TOOLKIT</p><h1 id="skills-title">Built for the backend.</h1><p>Explore the languages, tools and engineering practices behind my work.</p></div>
+    <div><p class="skills-eyebrow">BUILT FOR THE BACKEND</p><h1 id="skills-title">Technical skills</h1><p>Explore the languages, tools and engineering practices behind my work.</p></div>
     <div class="skills-stat"><strong>{{ total }}</strong><span>skills across {{ categories.length }} categories</span></div>
   </header>
   <section class="skills-focus" aria-label="Primary backend focus">
     <div><span class="focus-symbol" aria-hidden="true">&lt;/&gt;</span><div><h2>Java backend development</h2><p>My primary focus</p></div></div>
-    <div class="focus-chips">@for (skill of focus; track skill) { <button type="button" (click)="category.set('All'); query.set(skill)">{{ skill }} <span aria-hidden="true">↗</span></button> }</div>
+    <div class="focus-chips">@for (skill of focus; track skill) { <button type="button" [appRevealMobile]="skillResults" (click)="category.set('All'); query.set(skill)">{{ skill }} <svg class="ux-action-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16l-6 7v7l-4 2v-9L4 4Z"/></svg></button> }</div>
   </section>
   <div class="skills-controls">
     <label class="skill-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><span class="sr-only">Search skills</span><input type="search" placeholder="Search a skill or category…" [value]="query()" (input)="search($event)" /></label>
-    <button class="reset-filter" type="button" (click)="reset()" [disabled]="!query() && category() === 'All'">Reset filters</button>
+    <button class="reset-filter" type="button" [appRevealMobile]="skillResults" (click)="reset()" [disabled]="!query() && category() === 'All'">Reset filters</button>
   </div>
   <div class="category-filters" role="group" aria-label="Filter by category">
-    <button type="button" [attr.aria-pressed]="category() === 'All'" (click)="category.set('All')">All skills</button>
-    @for (group of categories; track group.title) { <button type="button" [attr.aria-pressed]="category() === group.title" (click)="category.set(group.title)">{{ group.title }}</button> }
+    <button type="button" [appRevealMobile]="skillResults" [attr.aria-pressed]="category() === 'All'" (click)="category.set('All')">All skills</button>
+    @for (group of categories; track group.title) { <button type="button" [appRevealMobile]="skillResults" [attr.aria-pressed]="category() === group.title" (click)="category.set(group.title)">{{ group.title }}</button> }
   </div>
-  <p class="skills-results" role="status" aria-live="polite">Showing {{ count() }} of {{ total }} skills</p>
+  <p #skillResults class="skills-results" role="status" aria-live="polite">Showing {{ count() }} of {{ total }} skills</p>
   <div class="skills-grid">
     @for (group of filtered(); track group.title) {
       <article class="skill-category">
@@ -31,7 +31,7 @@
         }</ul>
       </article>
     } @empty {
-      <div class="skills-empty"><h2>No matching skills</h2><p>Try another term or reset the filters to explore the full toolkit.</p><button type="button" (click)="reset()">Show all skills</button></div>
+      <div class="skills-empty"><h2>No matching skills</h2><p>Try another term or reset the filters to explore the full toolkit.</p><button type="button" [appRevealMobile]="skillResults" (click)="reset()">Show all skills</button></div>
     }
   </div>
   <section class="core-strengths" aria-labelledby="core-strengths-title">

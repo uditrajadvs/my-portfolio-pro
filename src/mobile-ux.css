@@ -1,0 +1,128 @@
+﻿/* V3: interaction and mobile hierarchy, loaded after the existing page styles. */
+html { scroll-behavior: auto; }
+main { min-width: 0; }
+#main-content:focus { outline: none; }
+a[href], button:not(:disabled), summary { cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: rgb(23 105 224 / 16%); }
+button:disabled { cursor: default; opacity: .55; }
+a, button, summary { transition: color .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; }
+main .detail-card:hover, main .profile-card:hover, main .content-card:hover, main .content-list li:hover, main .empty-state:hover, main .career-card:hover,
+main .detail-card:focus-within, main .profile-card:focus-within, main .content-card:focus-within { transform: none; border-color: var(--color-border); box-shadow: var(--shadow-card); }
+.skill-category li:hover { transform: none; border-color: var(--color-border); background: var(--color-surface); }
+.home-button, .home-resume, .work-contact a, .document-actions a, .work-links a, .skills-footer a, .credential-next a, .back-link { min-height: 44px; display: inline-flex; align-items: center; }
+.resume-download, .contact-submit, .skills-empty button { background: #1769e0; color: #fff; }
+.contact-channel { border: 1px solid var(--color-border); }
+.contact-channel:hover, .contact-channel:focus-visible { border-color: var(--color-primary); background: var(--color-primary-soft); }
+.work-details summary { min-height: 44px; padding: 12px 8px; border-radius: 6px; }
+.work-details summary:hover { background: var(--color-primary-soft); }
+.home-explore a:hover, .home-explore a:focus-visible { border-color: var(--color-primary); background: var(--color-primary-soft); }
+.home-work-picker button:active, .home-button:active, .document-actions a:active, .resume-actions a:active, .contact-submit:active { box-shadow: inset 0 0 0 2px var(--color-primary); filter: brightness(.93); }
+.footer-links a, .back-to-top { min-height: 44px; display: inline-flex; align-items: center; }
+.footer-socials a, .about-socials a { width: 44px; height: 44px; flex-shrink: 0; }
+.site-footer, .footer-brand p, .footer-links, .footer-socials { color: #f8fafc; }
+@media (hover: hover) {
+  .home-button:hover, .document-actions a:hover, .resume-actions a:hover { box-shadow: var(--shadow-card-hover); }
+  .footer-links a:hover, .skills-footer a:hover, .credential-next a:hover, .home-resume:hover, .work-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+}
+@media (max-width: 700px) {
+  :root { --header-height: 68px; }
+  main .home-page, main .about-page, main .education-page, main .skills-page, main .section-page, main .certifications-page, main .contact-page { width: calc(100% - 32px); padding-block: 24px; }
+  main :is(.about-page, .education-page, .section-page, .certifications-page, .contact-page, .skills-page) h1 { font-size: 28px !important; letter-spacing: -.03em; }
+  main .home-intro h1 { font-size: clamp(40px, 10vw, 50px) !important; }
+  main .home-intro h1 span { font-size: 23px; line-height: 1.25; }
+  main .about-heading p, main .page-summary, main .contact-heading p, main .certifications-heading > div > p:last-child { font-size: 15px !important; line-height: 1.65 !important; }
+  main .home-eyebrow, main .credential-eyebrow, main .skills-eyebrow, main .page-heading > p:first-child { font-size: 10px !important; line-height: 1.5 !important; }
+  main .home-description, main .work-description, main .credential-description, main .summary-card > p { font-size: 15px !important; line-height: 1.7 !important; }
+  main .home-contributions li, main .work-highlights li, main .bring-section li { font-size: 14px !important; line-height: 1.65 !important; }
+  main .home-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  main .home-actions .home-button { padding-inline: 12px; gap: 8px; min-height: 48px; }
+  main .home-actions .home-resume { grid-column: 1 / -1; justify-self: start; }
+  main .home-explore a { min-height: 90px; padding: 16px; }
+  main .home-work-picker button { min-height: 76px; }
+  main .home-work-picker strong { font-size: 14px; }
+  main .home-profile > a { min-height: 44px; font-size: 13px; }
+  main .work-contact, main .home-connect { padding: 20px; align-items: stretch; }
+  main .work-contact > a, main .home-connect > a { min-height: 48px; justify-content: center; }
+  main .work-footer-art { display: none; }
+  main .work-record-header { align-items: flex-start; }
+  main .work-record-header > div { min-width: 0; }
+  main .work-record-header h2 { font-size: 20px !important; line-height: 1.4 !important; overflow-wrap: anywhere; }
+  main .work-feature-label { white-space: normal; }
+  main .work-timeline { padding-left: 16px; margin-left: 4px; }
+  main .work-record, main .credential-content { padding: 20px; }
+  main .work-technologies > span, main .home-project-tech > span { font-size: 12px; }
+  main .document-actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  main .document-actions a { justify-content: center; min-height: 48px; font-size: 14px; }
+  main .credential-next nav { display: grid; gap: 4px; }
+  main .credential-facts { gap: 28px; }
+  main .profile-card { grid-template-columns: 96px minmax(0, 1fr); padding: 16px; column-gap: 14px; }
+  main .portrait-frame { width: 96px; height: 96px; }
+  main .profile-intro { min-width: 0; }
+  main .profile-facts li { font-size: 13px !important; overflow-wrap: anywhere; }
+  main .about-socials { flex-wrap: wrap; }
+  main .facts-grid dd, main .professional-details dd { font-size: 14px !important; line-height: 1.6 !important; overflow-wrap: anywhere; }
+  main .subject-chips li, main .interest-chip { font-size: 12px !important; }
+  main .contact-form :is(input, select, textarea), main .skill-search input { font-size: 16px !important; min-height: 48px; }
+  main .contact-submit { min-height: 48px; }
+  main .contact-channel { gap: 10px; padding: 12px; }
+  main .contact-channel > span:nth-child(2) { min-width: 0; }
+  main .category-filters button, main .focus-chips button, main .reset-filter { min-height: 44px; font-size: 13px; }
+  main .skills-controls { flex-wrap: wrap; }
+  main .skill-search { min-width: 0; flex-basis: 100%; }
+  main .skill-category li { min-height: 96px; }
+  main .skills-focus { flex-wrap: wrap; }
+  main .core-strengths ul { margin-left: 0; }
+  .footer-inner { grid-template-columns: 1fr !important; width: calc(100% - 32px); gap: 20px; }
+  .footer-links, .footer-socials, .back-to-top { grid-column: 1; grid-row: auto; }
+  .back-to-top { justify-self: start; }
+  .footer-links div { grid-template-columns: 1fr 1fr; gap: 0 16px; }
+}
+@media (max-width: 380px) {
+  main .home-actions { grid-template-columns: 1fr; }
+  main .home-actions .home-resume { grid-column: auto; }
+  main .home-facts { grid-template-columns: 1fr 1fr; }
+  main .home-facts > div:last-child { grid-column: 1 / -1; padding-left: 0; border-left: 0; }
+  main .home-tools { gap: 12px; }
+  main .home-section-heading { flex-wrap: wrap; }
+  main .home-section-heading > a { max-width: none; }
+  main .profile-card { grid-template-columns: 76px minmax(0, 1fr); gap: 12px; }
+  main .portrait-frame { width: 76px; height: 76px; }
+  main .skills-controls { gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  a, button, summary { transition: none; }
+  .footer-socials a:hover { transform: none; }
+}
+/* Override component hover specificity only for non-interactive content. */
+main .skills-grid .skill-category:hover { transform: none; border-color: var(--color-border); }
+main .skills-page .skills-grid .skill-category > ul > li:hover { transform: none; border-color: var(--color-border); background: var(--color-surface); }
+main .section-page .career-card:hover { transform: none; border-color: var(--color-border); box-shadow: var(--shadow-card); }
+main .skills-page .category-filters button[aria-pressed='true'] { background: #1769e0; border-color: #1769e0; color: #fff; }
+.skill-category:hover { transform: none; border-color: var(--color-border); }
+.category-filters button[aria-pressed='true'] { background: #1769e0; border-color: #1769e0; color: #fff; }
+@media (max-width: 700px) {
+  main .home-toolkit > .home-text-link { min-height: 44px; display: inline-flex; align-items: center; }
+  main .home-tools a { min-height: 44px; }
+  main .home-resume { font-size: 14px; }
+  main .resume-page { padding-block: 12px; }
+  main .resume-toolbar { padding: 10px 12px; }
+  main .resume-card { height: calc(100dvh - 92px); min-height: 280px; }
+  main .resume-actions a { width: 48px; height: 48px; }
+}
+
+/* Action-specific SVGs replace ambiguous text arrows. */
+.ux-action-icon { display: inline-block; width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+.home-explore .ux-action-icon, .home-work-picker .ux-action-icon:last-child { color: var(--color-primary); align-self: center; }
+.home-work-picker .ux-action-icon:last-child { margin-left: auto; }
+.work-contact > a { display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.focus-chips button { display: inline-flex; align-items: center; gap: 7px; }
+.work-growth-note > .ux-action-icon { display: block; margin-top: 4px; width: 24px; height: 24px; }
+
+/* Keep project-switching geometry stable at every breakpoint. */
+.home-intro > app-availability-badge { margin-bottom: 24px; }
+.home-project-preview { display: grid; align-content: start; overflow-anchor: none; }
+.home-project-preview .home-project-content { grid-area: 1 / 1; min-width: 0; visibility: hidden; opacity: 0; pointer-events: none; animation: none; }
+.home-project-preview .home-project-content.is-active { visibility: visible; opacity: 1; pointer-events: auto; animation: project-content-fade .18s ease-out; }
+.home-work-layout, .skills-grid, .work-details { overflow-anchor: none; }
+@keyframes project-content-fade { from { opacity: .3; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .home-project-preview .home-project-content.is-active { animation: none; } }

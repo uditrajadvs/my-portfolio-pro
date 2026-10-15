@@ -1,7 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { provideRouter, Router, withComponentInputBinding } from '@angular/router';
+﻿import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
+import { vi } from 'vitest';
+import { appConfig } from './app.config';
 import { App } from './app';
-import { routes } from './app.routes';
+import { ApplicationRef } from '@angular/core';
 import { documentsData } from './data/common/documents.data';
 
 describe('App', () => {
@@ -9,9 +12,114 @@ describe('App', () => {
     localStorage.removeItem('portfolio-theme');
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [provideRouter(routes, withComponentInputBinding())],
+      providers: appConfig.providers,
     })
       .compileComponents();
+  });
+
+  it('should start destination pages at the top through CTAs, footer links, and repeat navigation', async () => {
+    const scroll = vi.spyOn(TestBed.inject(ViewportScroller), 'scrollToPosition').mockImplementation(() => {});
+    const application = TestBed.inject(ApplicationRef);
+    const host = document.createElement('app-root');
+    document.body.appendChild(host);
+    const component = application.bootstrap(App, host);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/overview');
+    await application.whenStable();
+    application.tick();
+    const page = component.location.nativeElement as HTMLElement;
+    const main = page.querySelector<HTMLElement>('#main-content')!;
+    const focus = vi.spyOn(main, 'focus');
+    scroll.mockClear();
+    page.querySelector<HTMLAnchorElement>('.home-actions a[href="/contact"]')!.click();
+    await application.whenStable();
+    application.tick();
+    await vi.waitFor(() => expect(scroll).toHaveBeenCalledWith([0, 0]));
+    expect(router.url).toBe('/contact');
+    expect(focus).toHaveBeenCalledWith({ preventScroll: true });
+    scroll.mockClear();
+    page.querySelector<HTMLAnchorElement>('.footer-links a[href="/contact"]')!.click();
+    await application.whenStable();
+    await vi.waitFor(() => expect(scroll).toHaveBeenCalledWith([0, 0]));
+    scroll.mockClear();
+    page.querySelector<HTMLAnchorElement>('.footer-links a[href="/about"]')!.click();
+    await application.whenStable();
+    await vi.waitFor(() => expect(scroll).toHaveBeenCalledWith([0, 0]));
+    expect(router.url).toBe('/about');
+    scroll.mockRestore();
+    component.destroy();
+    host.remove();
+  });
+
+  it('should dismiss mobile navigation with Escape, outside clicks, focus exit, and navigation', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/overview');
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const page = fixture.nativeElement as HTMLElement;
+    page.querySelector<HTMLButtonElement>('.intro-skip')?.click();
+    fixture.detectChanges();
+    const menu = page.querySelector<HTMLButtonElement>('.menu-toggle')!;
+    const open = () => { menu.click(); fixture.detectChanges(); expect(menu.getAttribute('aria-expanded')).toBe('true'); };
+    open();
+    const focus = vi.spyOn(menu, 'focus');
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    fixture.detectChanges();
+    expect(menu.getAttribute('aria-expanded')).toBe('false');
+    expect(focus).toHaveBeenCalled();
+    open();
+    page.querySelector('main')!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    fixture.detectChanges();
+    expect(menu.getAttribute('aria-expanded')).toBe('false');
+    open();
+    menu.dispatchEvent(new FocusEvent('focusout', { bubbles: true, relatedTarget: page.querySelector('main') }));
+    fixture.detectChanges();
+    expect(menu.getAttribute('aria-expanded')).toBe('false');
+    open();
+    page.querySelector<HTMLAnchorElement>('#primary-navigation a[href="/projects"]')!.click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(router.url).toBe('/projects');
+    expect(menu.getAttribute('aria-expanded')).toBe('false');
+    expect(page.querySelector('#primary-navigation a[aria-current="page"]')?.textContent).toContain('Projects');
+    expect(page.querySelectorAll('#primary-navigation > a').length).toBe(9);
+  });
+
+  it('should reveal selected project content and skill results on mobile only', async () => {
+    let mobile = true;
+    vi.stubGlobal('matchMedia', (query: string) => ({ matches: query.includes('max-width') ? mobile : true }));
+    try {
+      const fixture = TestBed.createComponent(App);
+      const router = TestBed.inject(Router);
+      await router.navigateByUrl('/overview');
+      await fixture.whenStable();
+      fixture.detectChanges();
+      const page = fixture.nativeElement as HTMLElement;
+      const preview = page.querySelector<HTMLElement>('#home-project-preview')!;
+      const reveal = vi.fn();
+      preview.scrollIntoView = reveal;
+      // The first project is already selected; tapping it must still reveal its content.
+      page.querySelector<HTMLButtonElement>('.home-work-picker button')!.click();
+      await fixture.whenStable();
+      expect(reveal).toHaveBeenCalledWith({ block: 'start', behavior: 'instant' });
+      reveal.mockClear();
+      mobile = false;
+      page.querySelectorAll<HTMLButtonElement>('.home-work-picker button')[1].click();
+      await fixture.whenStable();
+      expect(reveal).not.toHaveBeenCalled();
+      mobile = true;
+      await router.navigateByUrl('/skills');
+      await fixture.whenStable();
+      fixture.detectChanges();
+      const results = page.querySelector<HTMLElement>('.skills-results')!;
+      results.scrollIntoView = reveal;
+      page.querySelectorAll<HTMLButtonElement>('.category-filters button')[1].click();
+      await fixture.whenStable();
+      expect(reveal).toHaveBeenCalledWith({ block: 'start', behavior: 'instant' });
+    } finally {
+      vi.unstubAllGlobals();
+    }
   });
 
   it('should create the app', () => {
@@ -48,11 +156,38 @@ describe('App', () => {
     fixture.detectChanges();
     expect(projectButtons[1].getAttribute('aria-pressed')).toBe('true');
     expect(projectButtons[0].getAttribute('aria-pressed')).toBe('false');
-    expect(compiled.querySelector('#home-project-preview')?.textContent).toContain('Ride Sharing Application');
+    expect(compiled.querySelector('.home-project-content.is-active')?.textContent).toContain('Ride Sharing Application');
+    const panels = compiled.querySelectorAll<HTMLElement>('.home-project-content');
+    expect(panels.length).toBe(projectButtons.length);
+    expect(panels[0].hasAttribute('inert')).toBe(true);
+    expect(panels[1].hasAttribute('inert')).toBe(false);
+    expect(panels[0].getAttribute('aria-hidden')).toBe('true');
+    const selectedPanel = panels[1];
+    projectButtons[1].click();
+    fixture.detectChanges();
+    expect(compiled.querySelector('.home-project-content.is-active')).toBe(selectedPanel);
     expect(compiled.querySelector('.header-socials, .hero-socials')).toBeNull();
     expect(compiled.querySelector('.footer-socials a[aria-label="LinkedIn profile"]')?.getAttribute('href')).toBe('https://www.linkedin.com/in/raj-udit');
     expect(compiled.querySelector('.footer-socials a[aria-label="GitHub profile"]')?.getAttribute('href')).toBe('https://github.com/uditrajadvs');
     expect(compiled.querySelector('.footer-socials a[aria-label="Gmail Udit Raj"]')?.getAttribute('href')).toBe('mailto:uditraj.se@gmail.com');
+  });
+
+  it('should use the same contact availability action on Overview and About Me', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    for (const route of ['/overview', '/about']) {
+      await router.navigateByUrl(route);
+      await fixture.whenStable();
+      fixture.detectChanges();
+      const page = fixture.nativeElement as HTMLElement;
+      const badge = page.querySelector<HTMLAnchorElement>('app-availability-badge a')!;
+      expect(badge.getAttribute('href')).toBe('/contact');
+      expect(badge.textContent).toContain('Open to opportunities');
+      expect(badge.querySelector('svg')).toBeTruthy();
+      badge.click();
+      await fixture.whenStable();
+      expect(router.url).toBe('/contact');
+    }
   });
 
   it('should toggle the page theme from the header control', async () => {

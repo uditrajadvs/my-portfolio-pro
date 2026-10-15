@@ -13,7 +13,7 @@
       [attr.aria-label]="menuOpen() ? 'Close navigation menu' : 'Open navigation menu'"
       (click)="toggleMenu()"
     >
-      <span></span><span></span>
+      <span class="menu-label">{{ menuOpen() ? 'Close' : 'Menu' }}</span><span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
     </button>
 
     <nav id="primary-navigation" class="navigation" [class.is-open]="menuOpen()" aria-label="Main navigation">
