@@ -1,3 +1,4 @@
+import { RevealMobile } from '../../shared/directives/reveal-mobile';
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import type { CareerRecord } from '../../data/common/career-record.model';
@@ -15,7 +16,7 @@ export interface SectionPageContent {
 
 @Component({
   selector: 'app-section-page',
-  imports: [RouterLink],
+  imports: [RouterLink, RevealMobile],
   templateUrl: './section-page.html',
   styleUrls: ['./section-page.css', './career.css'],
 })

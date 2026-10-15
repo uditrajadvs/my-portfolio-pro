@@ -40,8 +40,8 @@ export const overviewCards: OverviewCard[] = [
   },
   {
     id: 'skills',
-    title: 'Top skills',
-    eyebrow: 'BACKEND TOOLKIT',
+    title: 'Technical expertise',
+    eyebrow: 'TOOLS & TECHNOLOGIES',
     summary: previewSkills.join('  |  '),
     detail: 'SQL · Apache Camel · ActiveMQ · AWS',
     icon: '</>',
