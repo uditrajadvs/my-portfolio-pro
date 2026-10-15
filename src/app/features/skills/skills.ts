@@ -1,8 +1,9 @@
+import { RevealMobile } from '../../shared/directives/reveal-mobile';
 import { Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { previewSkills, skillsData, skillIcons, skillIconPaths, categoryIconPaths, coreStrengths } from '../../data/skills.data';
 
-@Component({ selector: 'app-skills', imports: [RouterLink], templateUrl: './skills.html', styleUrl: './skills.css' })
+@Component({ selector: 'app-skills', imports: [RouterLink, RevealMobile], templateUrl: './skills.html', styleUrl: './skills.css' })
 export class Skills {
   protected readonly categories = skillsData;
   protected readonly focus = previewSkills;

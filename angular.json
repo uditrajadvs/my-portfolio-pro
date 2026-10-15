@@ -27,7 +27,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/overview.css"
+              "src/overview.css",
+              "src/mobile-ux.css"
             ],
             "security": {
               "allowedHosts": []

@@ -1,10 +1,12 @@
-﻿import { Component, computed, signal } from '@angular/core';
+import { RevealMobile } from '../../shared/directives/reveal-mobile';
+import { AvailabilityBadge } from '../../shared/components/availability-badge/availability-badge';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { profileData } from '../../data/profile.data';
 import { overviewCards } from '../../data/overview.data';
 import { projectData } from '../../data/projects.data';
 import { skillIcons } from '../../data/skills.data';
-@Component({ selector: 'app-home', imports: [RouterLink], templateUrl: './home.html', styleUrl: './home.css' })
+@Component({ selector: 'app-home', imports: [RouterLink, AvailabilityBadge, RevealMobile], templateUrl: './home.html', styleUrl: './home.css' })
 export class Home {
   protected readonly profile = profileData;
   protected readonly cards = overviewCards;
@@ -16,5 +18,8 @@ export class Home {
     'M8 7V4h8v3M3 7h18v14H3V7Zm0 5c5 4 13 4 18 0M10 13h4v3h-4v-3Z',
   ];
   protected readonly selectedIndex = signal(0);
-  protected readonly selectedProject = computed(() => this.projects[this.selectedIndex()]);
+  protected selectProject(index: number): void {
+    if (index === this.selectedIndex()) return;
+    this.selectedIndex.set(index);
+  }
 }

@@ -58,7 +58,7 @@ export const profileData: PortfolioProfile = {
 	quickFacts: [
 		{ label: 'Experience', value: identity.experienceLabel, symbol: '◷' },
 		{ label: 'Role', value: identity.role, symbol: '</>' },
-		{ label: 'Domain', value: 'Wealth management', symbol: '↗' },
+		{ label: 'Domain', value: 'Wealth management', symbol: '◇' },
 		{ label: 'Focus', value: 'Backend systems', symbol: '⌘' },
 	],
 	strengths: [
@@ -77,7 +77,7 @@ export const profileData: PortfolioProfile = {
 	thoughtAttribution: identity.name,
 	professionalInterests: [
 		{ label: 'Backend engineering', symbol: '⌘' },
-		{ label: 'REST APIs and microservices', symbol: '↗' },
+		{ label: 'REST APIs and microservices', symbol: '⇄' },
 		{ label: 'Enterprise integration', symbol: '⇄' },
 		{ label: 'Financial services technology', symbol: '◇' },
 	],
